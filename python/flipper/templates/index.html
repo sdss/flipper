@@ -1,0 +1,178 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+    <!-- Splash Page -->
+    {# Splash Page #}
+    <div class="intro-header">
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="intro-message">
+                        <h1>Sloan Digital Sky Survey</h1>
+                        <hr class="intro-divider">
+                        <h3>Mapping the Universe (some byline here..)</h3>
+                        <hr class="intro-divider">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.intro-header -->
+
+    <!-- Section - Gallery Start -->
+    <section id="gallery" class="bg-white">
+
+        <div class='well' id='projects'>
+            <div class='row'>
+                <div class='col-md-12'>
+
+                    <div class="card-deck justify-content-center">
+                        <a target="_blank" href="https://placeholder.com">
+                        <div class="card text-center">
+                          <h5 class="card-header">Imaging</h5>
+                          <div class="card-body">
+                              <img class='img-fluid' src="http://via.placeholder.com/350x150" alt="Card Image">
+                              <div class="overlay">
+                                <div class="text">Hello Imaging World</div>
+                              </div>
+                          </div>
+                        </div>
+                        </a>
+
+                        <a target="_blank" href="https://placeholder.com">
+                        <div class="card text-center">
+                          <h5 class="card-header">Optical</h5>
+                          <div class="card-body">
+                              <img class='img-fluid' src="http://via.placeholder.com/350x150" alt="Card Image">
+                              <div class="overlay">
+                                <div class="text">Some Optical Text</div>
+                              </div>
+                          </div>
+                        </div>
+                        </a>
+
+                        <a target="_blank" href="https://placeholder.com">
+                        <div class="card text-center">
+                          <h5 class="card-header">Infrared</h5>
+                          <div class="card-body">
+                              <img class='img-fluid' src="http://via.placeholder.com/350x150" alt="Card Image">
+                              <div class="overlay">
+                                <div class="text">Some Infrared Text</div>
+                              </div>
+                          </div>
+                        </div>
+                        </a>
+
+                        <a target="_blank" href="https://placeholder.com">
+                        <div class="card text-center">
+                          <h5 class="card-header">Marvin</h5>
+                          <div class="card-body">
+                              <img class='img-fluid' src="http://via.placeholder.com/350x150" alt="Card Image">
+                              <div class="overlay">
+                                <div class="text">Marvin is a complete ecosystem designed for overcoming the challenge of searching, accessing, and visualizing the MaNGA data, via the Web or using Python tools.</div>
+                              </div>
+                          </div>
+                        </div>
+                        </a>
+
+                        <a target="_blank" href="https://placeholder.com">
+                        <div class="card text-center">
+                          <h5 class="card-header">MaStar</h5>
+                          <div class="card-body">
+                              <img class='img-fluid' src="http://via.placeholder.com/350x150" alt="Card Image">
+                              <div class="overlay">
+                                <div class="text">MaNGA Stellar Library (MaStar) is a stellar spectral library with more than 9000 stars with a wide coverage of stellar parameters, high quality calibration, and identical observing setup as the MaNGA survey.</div>
+                              </div>
+                          </div>
+                        </div>
+                        </a>
+                    </div> <!-- end card-deck -->
+                </div> <!-- end col -->
+            </div> <!-- end row -->
+
+            <div class='row'>
+                <div class='col-md-12'>
+
+                    <div class="card-deck justify-content-center">
+                        <a target="_blank" href="https://placeholder.com">
+                        <div class="card text-center">
+                          <h5 class="card-header">www.sdss.org</h5>
+                          <div class="card-body">
+                              <img class='img-fluid' src="http://via.placeholder.com/350x150" alt="Card Image">
+                              <div class="overlay">
+                                <div class="text">Some Main Text</div>
+                              </div>
+                          </div>
+                        </div>
+                        </a>
+
+                        <a target="_blank" href="https://placeholder.com">
+                        <div class="card text-center">
+                          <h5 class="card-header">data.sdss.org</h5>
+                          <div class="card-body">
+                              <img class='img-fluid' src="http://via.placeholder.com/350x150" alt="Card Image">
+                              <div class="overlay">
+                                <div class="text">Some Data Text</div>
+                              </div>
+                          </div>
+                        </div>
+                        </a>
+
+                        <a target="_blank" href="https://placeholder.com">
+                        <div class="card text-center">
+                          <h5 class="card-header">skyserver.org</h5>
+                          <div class="card-body">
+                              <img class='img-fluid' src="http://via.placeholder.com/350x150" alt="Card Image">
+                              <div class="overlay">
+                                <div class="text">SkyServer provides browser-based public access to all Sloan Digital Sky Survey data for everyone from teachers to professional astronomers.</div>
+                              </div>
+                          </div>
+                        </div>
+                        </a>
+
+                        <a target="_blank" href="https://placeholder.com">
+                        <div class="card text-center">
+                          <h5 class="card-header">voyages.sdss.org</h5>
+                          <div class="card-body">
+                              <img class='img-fluid' src="http://via.placeholder.com/350x150" alt="Card Image">
+                              <div class="overlay">
+                                <div class="text">Designed to provide flexibility for teachers, with three distinct activity types including preflight, launch and expeditions to create a range of custom educational experiences.</div>
+                              </div>
+                          </div>
+                        </div>
+                        </a>
+                    </div> <!-- end card-deck -->
+                </div> <!-- end col -->
+            </div> <!-- end row -->
+
+        </div> <!-- end well -->
+    </section>
+    <!-- //Section - Gallery End -->
+
+
+{% endblock body %}
+
+<!-- JS Code -->
+{% block code %}
+<script type='text/javascript'>
+
+    // Scroll to div
+    function scroll_to(location) {
+      console.log(location);
+        if (location !== undefined) {
+            const scrolldiv = $(location);
+            $('html,body').animate({scrollTop:scrolldiv.offset().top},1000, 'easeInOutExpo');
+        } else {
+            $('html,body').animate({scrollTop:0},1000, 'easeInOutExpo');
+        }
+
+    }
+
+</script>
+{% endblock code %}
