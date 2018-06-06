@@ -2,7 +2,7 @@
 * @Author: Brian Cherinka
 * @Date:   2018-05-15 14:32:32
 * @Last Modified by:   Brian Cherinka
-* @Last Modified time: 2018-06-05 17:58:54
+* @Last Modified time: 2018-06-06 10:23:49
 */
 
 
@@ -154,4 +154,10 @@
     to {
         opacity: 1;
     }
+}
+
+
+.card img {
+  width: 350px;
+  height:200px;
 }

@@ -34,10 +34,10 @@
 
                     <div class="card-deck justify-content-center">
                         <a target="_blank" href="https://placeholder.com">
-                        <div class="card text-center">
+                        <div class="card text-center" id='imaging'>
                           <h5 class="card-header">Imaging</h5>
                           <div class="card-body">
-                              <img class='img-fluid' src="http://via.placeholder.com/350x150" alt="Card Image">
+                              <img class='img-fluid splash' id='img-imaging' src="http://via.placeholder.com/350x200" alt="Card Image">
                               <div class="overlay">
                                 <div class="text">Hello Imaging World</div>
                               </div>
@@ -46,10 +46,10 @@
                         </a>
 
                         <a target="_blank" href="https://placeholder.com">
-                        <div class="card text-center">
+                        <div class="card text-center" id='optical'>
                           <h5 class="card-header">Optical</h5>
                           <div class="card-body">
-                              <img class='img-fluid' src="http://via.placeholder.com/350x150" alt="Card Image">
+                              <img class='img-fluid splash' id='img-optical' src="http://via.placeholder.com/350x200" alt="Card Image">
                               <div class="overlay">
                                 <div class="text">Some Optical Text</div>
                               </div>
@@ -58,10 +58,10 @@
                         </a>
 
                         <a target="_blank" href="https://placeholder.com">
-                        <div class="card text-center">
+                        <div class="card text-center" id='infrared'>
                           <h5 class="card-header">Infrared</h5>
                           <div class="card-body">
-                              <img class='img-fluid' src="http://via.placeholder.com/350x150" alt="Card Image">
+                              <img class='img-fluid splash' id='img-infrared' src="http://via.placeholder.com/350x200" alt="Card Image">
                               <div class="overlay">
                                 <div class="text">Some Infrared Text</div>
                               </div>
@@ -69,11 +69,11 @@
                         </div>
                         </a>
 
-                        <a target="_blank" href="https://placeholder.com">
-                        <div class="card text-center">
+                        <a target="_blank" href="https://sas.sdss.org/marvin/">
+                        <div class="card text-center" id='marvin'>
                           <h5 class="card-header">Marvin</h5>
                           <div class="card-body">
-                              <img class='img-fluid' src="http://via.placeholder.com/350x150" alt="Card Image">
+                              <img class='img-fluid splash' id='img-marvin' src="{{url_for('static', filename='marvin_cutout.png')}}" alt="Card Image">
                               <div class="overlay">
                                 <div class="text">Marvin is a complete ecosystem designed for overcoming the challenge of searching, accessing, and visualizing the MaNGA data, via the Web or using Python tools.</div>
                               </div>
@@ -82,10 +82,10 @@
                         </a>
 
                         <a target="_blank" href="https://placeholder.com">
-                        <div class="card text-center">
+                        <div class="card text-center" id='mastar'>
                           <h5 class="card-header">MaStar</h5>
                           <div class="card-body">
-                              <img class='img-fluid' src="http://via.placeholder.com/350x150" alt="Card Image">
+                              <img class='img-fluid splash' id='img-mastar' src="http://via.placeholder.com/350x200" alt="Card Image">
                               <div class="overlay">
                                 <div class="text">MaNGA Stellar Library (MaStar) is a stellar spectral library with more than 9000 stars with a wide coverage of stellar parameters, high quality calibration, and identical observing setup as the MaNGA survey.</div>
                               </div>
@@ -100,11 +100,11 @@
                 <div class='col-md-12'>
 
                     <div class="card-deck justify-content-center">
-                        <a target="_blank" href="https://placeholder.com">
-                        <div class="card text-center">
+                        <a target="_blank" href="https://www.sdss.org">
+                        <div class="card text-center" id='sdsshome'>
                           <h5 class="card-header">www.sdss.org</h5>
                           <div class="card-body">
-                              <img class='img-fluid' src="http://via.placeholder.com/350x150" alt="Card Image">
+                              <img class='img-fluid splash' id='img-sdsshome' src="{{url_for('static', filename='sdss.org.png')}}" alt="Card Image">
                               <div class="overlay">
                                 <div class="text">Some Main Text</div>
                               </div>
@@ -112,11 +112,11 @@
                         </div>
                         </a>
 
-                        <a target="_blank" href="https://placeholder.com">
-                        <div class="card text-center">
+                        <a target="_blank" href="https://data.sdss.org/sas/">
+                        <div class="card text-center" id='data'>
                           <h5 class="card-header">data.sdss.org</h5>
                           <div class="card-body">
-                              <img class='img-fluid' src="http://via.placeholder.com/350x150" alt="Card Image">
+                              <img class='img-fluid splash' id='img-data' src="{{url_for('static', filename='data.sdss.org.png')}}" alt="Card Image">
                               <div class="overlay">
                                 <div class="text">Some Data Text</div>
                               </div>
@@ -124,11 +124,11 @@
                         </div>
                         </a>
 
-                        <a target="_blank" href="https://placeholder.com">
-                        <div class="card text-center">
+                        <a target="_blank" href="https://skyserver.sdss.org">
+                        <div class="card text-center" id='skyserver'>
                           <h5 class="card-header">skyserver.org</h5>
                           <div class="card-body">
-                              <img class='img-fluid' src="http://via.placeholder.com/350x150" alt="Card Image">
+                              <img class='img-fluid splash' id='img-skyserver' src="{{url_for('static', filename='skyserver.sdss.org.png')}}" alt="Card Image">
                               <div class="overlay">
                                 <div class="text">SkyServer provides browser-based public access to all Sloan Digital Sky Survey data for everyone from teachers to professional astronomers.</div>
                               </div>
@@ -136,11 +136,11 @@
                         </div>
                         </a>
 
-                        <a target="_blank" href="https://placeholder.com">
-                        <div class="card text-center">
+                        <a target="_blank" href="http://voyages.sdss.org">
+                        <div class="card text-center" id='voyages'>
                           <h5 class="card-header">voyages.sdss.org</h5>
                           <div class="card-body">
-                              <img class='img-fluid' src="http://via.placeholder.com/350x150" alt="Card Image">
+                              <img class='img-fluid splash' id='img-voyages' src="{{url_for('static', filename='voyages.sdss.org.png')}}" alt="Card Image">
                               <div class="overlay">
                                 <div class="text">Designed to provide flexibility for teachers, with three distinct activity types including preflight, launch and expeditions to create a range of custom educational experiences.</div>
                               </div>
