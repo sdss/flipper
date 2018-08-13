@@ -5,12 +5,15 @@
 #
 # @Author: Brian Cherinka
 # @Date:   2018-05-15 10:51:48
-# @Last modified by:   Brian
-# @Last Modified time: 2018-06-05 16:36:58
+# @Last modified by:   Brian Cherinka
+# @Last Modified time: 2018-08-13 11:14:17
 
 from __future__ import print_function, division, absolute_import
 from flask import Flask, render_template
 import argparse
+
+# Set the Flipper version
+__version__ = '0.1.0dev'
 
 # --------------------------
 # Parse command line options
