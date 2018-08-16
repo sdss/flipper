@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import argparse
-from flipper.app import app
+from flipper.app import create_app
 
 # Parse command
 parser = argparse.ArgumentParser(description='Script to start Flipper')
@@ -9,6 +9,8 @@ parser.add_argument('-d', '--debug', help='launch app in debug mode', action='st
 parser.add_argument('-p', '--port', help='port to run on in debug mode', type=int, default=5000)
 
 args = parser.parse_args()
+
+app = create_app()
 
 
 if __name__ == "__main__":

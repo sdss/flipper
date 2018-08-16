@@ -6,35 +6,46 @@
 # @Author: Brian Cherinka
 # @Date:   2018-05-15 10:51:48
 # @Last modified by:   Brian Cherinka
-# @Last Modified time: 2018-08-13 11:14:17
+# @Last Modified time: 2018-08-16 11:19:45
 
 from __future__ import print_function, division, absolute_import
-from flask import Flask, render_template
-import argparse
+from flask import Flask
+from flipper.controllers.index import index
+from flipper.settings import ProdConfig, DevConfig, CustomConfig
 
 # Set the Flipper version
 __version__ = '0.1.0dev'
 
-# --------------------------
-# Parse command line options
-# --------------------------
-parser = argparse.ArgumentParser(description='Script to start Flask app.')
-parser.add_argument('-d', '--debug', help='Launch app in debug mode.', action="store_true", required=False)
-parser.add_argument('-p', '--port', help='Port to use in debug mode.', default=5000, type=int, required=False)
 
-args = parser.parse_args()
+def create_app(debug=None, local=None, object_config=None):
+
+    base = 'flipper'
+    app = Flask(__name__, static_url_path='/{0}/static'.format(base))
+    app.debug = debug
+
+    url_prefix = '/flipper' if local else '/{0}'.format(base)
+
+    # ----------------------------------
+    # Load the appropriate Flask configuration object for debug or production
+    if not object_config:
+        if app.debug or local:
+            app.logger.info('Loading Development Config!')
+            object_config = type('Config', (DevConfig, CustomConfig), dict())
+        else:
+            app.logger.info('Loading Production Config!')
+            object_config = type('Config', (ProdConfig, CustomConfig), dict())
+    app.config.from_object(object_config)
+
+    # -------------------
+    # Registration
+    register_blueprints(app, url_prefix=url_prefix)
+
+    return app
 
 
-app = Flask(__name__)
+def register_blueprints(app, url_prefix=None):
+    ''' Register the Flask Blueprints used '''
 
+    app.register_blueprint(index, url_prefix=url_prefix)
 
-@app.route('/', endpoint='home')
-@app.route('/index/', endpoint='index')
-def index():
-    output = {'title': 'SDSS Splashpage'}
-    return render_template('index.html', **output)
-
-
-if __name__ == '__main__':
-    app.run(port=args.port, debug=args.debug)
 
