@@ -5,6 +5,8 @@ Flipper Change Log
 
 This document records the main changes to the python-template code.
 
+0.1.1 (unreleased)
+------------------
 
 .. _changelog-0.1.0:
 
