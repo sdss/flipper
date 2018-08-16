@@ -6,7 +6,7 @@
 # @Author: Brian Cherinka
 # @Date:   2018-08-15 16:39:51
 # @Last modified by:   Brian Cherinka
-# @Last Modified time: 2018-08-15 17:05:32
+# @Last Modified time: 2018-08-16 11:58:34
 
 from __future__ import print_function, division, absolute_import
 from flask import Blueprint, render_template, jsonify
@@ -16,7 +16,7 @@ index = Blueprint("index", __name__)
 
 @index.route('/status/', methods=['GET', 'POST'], endpoint='status')
 def status():
-    return jsonify(result={'flipper status': 'ok'})
+    return jsonify({'flipper status': 'ok'})
 
 
 @index.route('/', methods=['GET'], endpoint='home')

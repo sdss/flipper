@@ -20,5 +20,7 @@ Added
 * Added bin/run_flipper script for production run
 * Added .bumpversion.cfg
 * Flask settings.py
+* Added some basic tests
+* Adding a pipenv PipFile for prod+dev dependencies
 
 
