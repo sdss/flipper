@@ -8,7 +8,7 @@ This document records the main changes to the python-template code.
 
 .. _changelog-0.1.0:
 
-0.1.0 (unreleased)
+0.1.0 (2018-08-16)
 ------------------
 
 This is the first version of the SDSS flipper app.
