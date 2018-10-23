@@ -4,34 +4,97 @@
 
     <!-- Splash Page -->
     {# Splash Page #}
-    <div class="intro-header">
+    
+    <section id='splash'>
+        <div class="intro-header">
 
-        <div class="container">
-
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="intro-message">
-                        <h1>Sloan Digital Sky Survey</h1>
-                        <hr class="intro-divider">
-                        <h3>Mapping the Universe (some byline here..)</h3>
-                        <hr class="intro-divider">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="intro-message">
+                            <h1>Sloan Digital Sky Survey</h1>
+                            <hr class="intro-divider">
+                            <h3>Mapping the Universe (some byline here..)</h3>
+                            <hr class="intro-divider">
+                        </div>
                     </div>
                 </div>
             </div>
 
         </div>
-        <!-- /.container -->
+        <!-- /.intro-header -->
+    </section>
 
-    </div>
-    <!-- /.intro-header -->
+    <section class='group' id='portals'>
+        <div class="d-flex justify-content-center"><h2>Data Portals</h2></div>
+        <div class='row'>
+            <div class='col-md-12'>
+                    <div class="card-deck justify-content-center">
+                        <a target="_blank" href="https://data.sdss.org/sas/">
+                        <div class="card text-center" id='data'>
+                          <h5 class="card-header">data.sdss.org</h5>
+                          <div class="card-body">
+                              <img class='img-fluid splash' id='img-data' src="{{url_for('static', filename='data.sdss.org.png')}}" alt="Card Image">
+                              <div class="overlay">
+                                <div class="text">Some Data Text</div>
+                              </div>
+                          </div>
+                        </div>
+                        </a>
 
-    <!-- Section - Gallery Start -->
-    <section id="gallery" class="bg-white">
+                        <a target="_blank" href="https://skyserver.sdss.org">
+                        <div class="card text-center" id='skyserver'>
+                          <h5 class="card-header">skyserver.org</h5>
+                          <div class="card-body">
+                              <img class='img-fluid splash' id='img-skyserver' src="{{url_for('static', filename='skyserver.sdss.org.png')}}" alt="Card Image">
+                              <div class="overlay">
+                                <div class="text">SkyServer provides browser-based public access to all Sloan Digital Sky Survey data for everyone from teachers to professional astronomers.</div>
+                              </div>
+                          </div>
+                        </div>
+                        </a>
+                    </div> <!-- end card-deck -->
+            </div>
+        </div>
+    </section>
 
-        <div class='well' id='projects'>
-            <div class='row'>
-                <div class='col-md-12'>
+    <section class='group' id='epo'>
+        <div class="d-flex justify-content-center"><h2>Education/Public Outreach</h2></div>
+        <div class='row'>
+            <div class='col-md-12'>
+                    <div class="card-deck justify-content-center">
+                        <a target="_blank" href="https://www.sdss.org">
+                        <div class="card text-center" id='sdsshome'>
+                          <h5 class="card-header">www.sdss.org</h5>
+                          <div class="card-body">
+                              <img class='img-fluid splash' id='img-sdsshome' src="{{url_for('static', filename='sdss.org.png')}}" alt="Card Image">
+                              <div class="overlay">
+                                <div class="text">Some Main Text</div>
+                              </div>
+                          </div>
+                        </div>
+                        </a>
 
+                        <a target="_blank" href="http://voyages.sdss.org">
+                        <div class="card text-center" id='voyages'>
+                          <h5 class="card-header">voyages.sdss.org</h5>
+                          <div class="card-body">
+                              <img class='img-fluid splash' id='img-voyages' src="{{url_for('static', filename='voyages.sdss.org.png')}}" alt="Card Image">
+                              <div class="overlay">
+                                <div class="text">Designed to provide flexibility for teachers, with three distinct activity types including preflight, launch and expeditions to create a range of custom educational experiences.</div>
+                              </div>
+                          </div>
+                        </div>
+                        </a>
+                    </div> <!-- end card-deck -->
+            </div>
+        </div>
+    </section>
+
+    <section class='group' id='data'>
+        <div class="d-flex justify-content-center"><h2>Data Interaction</h2></div>
+        <div class='row'>
+            <div class='col-md-12'>
                     <div class="card-deck justify-content-center">
                         <a target="_blank" href="https://placeholder.com">
                         <div class="card text-center" id='imaging'>
@@ -93,68 +156,9 @@
                         </div>
                         </a>
                     </div> <!-- end card-deck -->
-                </div> <!-- end col -->
-            </div> <!-- end row -->
-
-            <div class='row'>
-                <div class='col-md-12'>
-
-                    <div class="card-deck justify-content-center">
-                        <a target="_blank" href="https://www.sdss.org">
-                        <div class="card text-center" id='sdsshome'>
-                          <h5 class="card-header">www.sdss.org</h5>
-                          <div class="card-body">
-                              <img class='img-fluid splash' id='img-sdsshome' src="{{url_for('static', filename='sdss.org.png')}}" alt="Card Image">
-                              <div class="overlay">
-                                <div class="text">Some Main Text</div>
-                              </div>
-                          </div>
-                        </div>
-                        </a>
-
-                        <a target="_blank" href="https://data.sdss.org/sas/">
-                        <div class="card text-center" id='data'>
-                          <h5 class="card-header">data.sdss.org</h5>
-                          <div class="card-body">
-                              <img class='img-fluid splash' id='img-data' src="{{url_for('static', filename='data.sdss.org.png')}}" alt="Card Image">
-                              <div class="overlay">
-                                <div class="text">Some Data Text</div>
-                              </div>
-                          </div>
-                        </div>
-                        </a>
-
-                        <a target="_blank" href="https://skyserver.sdss.org">
-                        <div class="card text-center" id='skyserver'>
-                          <h5 class="card-header">skyserver.org</h5>
-                          <div class="card-body">
-                              <img class='img-fluid splash' id='img-skyserver' src="{{url_for('static', filename='skyserver.sdss.org.png')}}" alt="Card Image">
-                              <div class="overlay">
-                                <div class="text">SkyServer provides browser-based public access to all Sloan Digital Sky Survey data for everyone from teachers to professional astronomers.</div>
-                              </div>
-                          </div>
-                        </div>
-                        </a>
-
-                        <a target="_blank" href="http://voyages.sdss.org">
-                        <div class="card text-center" id='voyages'>
-                          <h5 class="card-header">voyages.sdss.org</h5>
-                          <div class="card-body">
-                              <img class='img-fluid splash' id='img-voyages' src="{{url_for('static', filename='voyages.sdss.org.png')}}" alt="Card Image">
-                              <div class="overlay">
-                                <div class="text">Designed to provide flexibility for teachers, with three distinct activity types including preflight, launch and expeditions to create a range of custom educational experiences.</div>
-                              </div>
-                          </div>
-                        </div>
-                        </a>
-                    </div> <!-- end card-deck -->
-                </div> <!-- end col -->
-            </div> <!-- end row -->
-
-        </div> <!-- end well -->
+            </div>
+        </div>
     </section>
-    <!-- //Section - Gallery End -->
-
 
 {% endblock body %}
 

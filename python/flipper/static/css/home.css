@@ -52,6 +52,13 @@
   text-align: center;
 }
 
+.group {
+    padding: 15px;
+    border: 1px solid #532AA1;
+    border-radius: 1rem;
+    margin: 15px;
+}
+
 .intro-header {
     padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
     padding-bottom: 200px;
@@ -60,6 +67,7 @@
     background: url('../sdss_law.jpg') no-repeat center center;
     background-size: cover;
     background-position: right bottom;
+    max-height: 500px;
 }
 
 .intro-message {

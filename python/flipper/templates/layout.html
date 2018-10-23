@@ -28,13 +28,13 @@
     {% block jshead %}{% endblock jshead %}
 </head>
 
-<body class='{{page|default("home")}}'>
+<body class='{{page|default("home")}}' data-spy="scroll" data-target=".navbar">
 
     <!-- Header section -->
     {% include 'header.html' %}
 
     <!-- Main Body -->
-    <div class="container-fluid" id="content">
+    <div class="container-fluid p-0" id="content base">
         {% block body %}{% endblock body %}
     </div>
 
