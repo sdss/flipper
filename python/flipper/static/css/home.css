@@ -52,11 +52,16 @@
   text-align: center;
 }
 
-.group {
+/* .group {
     padding: 15px;
     border: 1px solid #532AA1;
     border-radius: 1rem;
     margin: 15px;
+} */
+hr.style-two {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #532AA1, rgba(0, 0, 0, 0));
 }
 
 .intro-header {
