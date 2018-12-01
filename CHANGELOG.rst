@@ -3,10 +3,16 @@
 Flipper Change Log
 ==================
 
-This document records the main changes to the python-template code.
-
 0.1.1 (unreleased)
 ------------------
+
+Changed
+^^^^^^^
+* Splash page to hires version
+* Switched Data Interaction links to dr15
+* Added new SDSS Blog to EPO
+* Added new images to each thumbnail and new text. 
+* switched css border to small divider
 
 .. _changelog-0.1.0:
 
