@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "flipper"
-version = "0.1.1"
+version = "0.1.2dev"
 description = "home splash page for SDSS"
 authors = ["Brian Cherinka <bcherinka@stsci.edu>"]
 license = "BSD-3-Clause"
