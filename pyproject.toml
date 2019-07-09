@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "flipper"
+version = "0.1.1"
+description = "home splash page for SDSS"
+authors = ["Brian Cherinka <bcherinka@stsci.edu>"]
+license = "BSD-3-Clause"
+repository = "https://github.com/sdss/flipper"
+
+[tool.poetry.dependencies]
+python = "^3.6"
+flask = "0.12.4"
+bumpversion = "*"
+
+[tool.poetry.dev-dependencies]
+pytest = "^3.4"
+pytest-flask = "*"
+pytest-sugar = "*"
+pytest-cov = "*"
