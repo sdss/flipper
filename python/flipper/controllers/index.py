@@ -9,6 +9,7 @@
 # @Last Modified time: 2018-08-16 11:58:34
 
 from __future__ import print_function, division, absolute_import
+import flipper.app
 from flask import Blueprint, render_template, jsonify
 
 index = Blueprint("index", __name__)
@@ -22,5 +23,5 @@ def status():
 @index.route('/', methods=['GET'], endpoint='home')
 @index.route('/index/', methods=['GET'], endpoint='index')
 def home():
-    output = {'title': 'SDSS Splashpage'}
+    output = {'title': 'SDSS Splashpage', 'version': flipper.app.__version__}
     return render_template('index.html', **output)

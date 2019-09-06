@@ -9,7 +9,8 @@ Flipper Change Log
 Added
 ^^^^^
 - added test server for flipper with new uwsgi test.ini
-- added new FLIPPER_BASE envvar to allow for test server  
+- added new FLIPPER_BASE envvar to allow for test server 
+- added flipper version to page footer 
 
 Changed
 ^^^^^^^
