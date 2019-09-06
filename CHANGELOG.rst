@@ -6,6 +6,11 @@ Flipper Change Log
 0.1.2 (unreleased)
 ------------------
 
+Added
+^^^^^
+- added test server for flipper with new uwsgi test.ini
+- added new FLIPPER_BASE envvar to allow for test server  
+
 Changed
 ^^^^^^^
 - Updating links for DR16

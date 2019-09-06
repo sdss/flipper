@@ -9,6 +9,7 @@
 # @Last Modified time: 2018-08-16 11:19:45
 
 from __future__ import print_function, division, absolute_import
+import os
 from flask import Flask
 from flipper.controllers.index import index
 from flipper.settings import ProdConfig, DevConfig, CustomConfig
@@ -19,7 +20,8 @@ __version__ = '0.1.2dev'
 
 def create_app(debug=None, local=None, object_config=None):
 
-    base = 'flipper'
+    base = os.environ.get('FLIPPER_BASE', 'flipper')
+
     app = Flask(__name__, static_url_path='/{0}/static'.format(base))
     app.debug = debug
 
