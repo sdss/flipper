@@ -6,6 +6,11 @@ Flipper Change Log
 0.1.2 (unreleased)
 ------------------
 
+Changed
+^^^^^^^
+- Updating links for DR16
+
+
 0.1.1 (2018-11-30)
 ------------------
 
