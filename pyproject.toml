@@ -8,7 +8,7 @@ repository = "https://github.com/sdss/flipper"
 
 [tool.poetry.dependencies]
 python = "^3.6"
-flask = "0.12.4"
+flask = "^1.0"
 bumpversion = "*"
 
 [tool.poetry.dev-dependencies]
