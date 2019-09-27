@@ -47,7 +47,7 @@ def home():
     else:
         base_url = '{0}.sdss.org'.format(release)
         marvin_url = base_url
-    print(release, base_url, marvin_url)
+
     # build template parameter dictionary
     output = {'title': 'SDSS Splashpage', 'version': flipper.app.__version__,
               'release': release, 'istest': istestenv, 'base_url': base_url,
