@@ -42,7 +42,7 @@ def home():
     # set base and marvin urls for production or testing
     istestenv = 'test' in request.path
     if istestenv:
-        base_url = '{0}.sdss.utah.edu'.format(release)
+        base_url = '{0}.sdss.org'.format(release)
         marvin_url = 'lore.sdss.utah.edu/test'
     else:
         base_url = '{0}.sdss.org'.format(release)
