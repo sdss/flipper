@@ -29,7 +29,11 @@ def status():
 def home():
     # get release variable from Flask request
     release = request.environ.get('FLIPPER_RELEASE', None)
-
+    print('request', request.environ)
+    print('request flipper release', release)
+    print('flipper test', os.environ.get("FLIPPER_TEST", None))
+    print('flipper url', request.url)
+    print('req headers', request.headers)
     # if no release try the os environment variable
     if not release:
         release = os.environ.get("FLIPPER_RELEASE", None)
@@ -42,7 +46,7 @@ def home():
     # set base and marvin urls for production or testing
     istestenv = 'test' in request.path
     if istestenv:
-        base_url = '{0}.sdss.org'.format(release)
+        base_url = '{0}.sdss.utah.edu'.format(release)
         marvin_url = 'lore.sdss.utah.edu/test'
     else:
         base_url = '{0}.sdss.org'.format(release)
