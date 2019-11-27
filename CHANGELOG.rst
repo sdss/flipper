@@ -19,7 +19,9 @@ Changed
 - Set up flipper to be more flexible towards releases
 - Flipper index page now accepts a base_url to control for production, testing environments and for changing releases
 - now uses uwsgi_param on nginx locations to determine flipper release, DR15, DR16, etc.
-- now assumes testing urls will be [release].sdss.utah.edu and production urls are [release].sdss.org
+- now also uses proxy set request header for nginx locations that are proxies
+- now assumes testing urls will be lore.sdss.utah.edu (or sas.sdss.org/test) and production urls are [release].sdss.org
+- flipper now looks for release from request header variable first, then FLIPPER_RELEASE environment variable
 
 0.1.1 (2018-11-30)
 ------------------
