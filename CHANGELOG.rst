@@ -11,11 +11,17 @@ Added
 - added test server for flipper with new uwsgi test.ini
 - added new FLIPPER_BASE envvar to allow for test server 
 - added flipper version to page footer 
+- added new FLIPPER_RELEASE environment variable which controls for DR versioning
 
 Changed
 ^^^^^^^
 - Updating links for DR16
-
+- Set up flipper to be more flexible towards releases
+- Flipper index page now accepts a base_url to control for production, testing environments and for changing releases
+- now uses uwsgi_param on nginx locations to determine flipper release, DR15, DR16, etc.
+- now also uses proxy set request header for nginx locations that are proxies
+- now assumes testing urls will be lore.sdss.utah.edu (or sas.sdss.org/test) and production urls are [release].sdss.org
+- flipper now looks for release from request header variable first, then FLIPPER_RELEASE environment variable
 
 0.1.1 (2018-11-30)
 ------------------
