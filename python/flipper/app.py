@@ -15,7 +15,7 @@ from flipper.controllers.index import index
 from flipper.settings import ProdConfig, DevConfig, CustomConfig
 
 # Set the Flipper version
-__version__ = '0.1.2dev'
+__version__ = '0.1.2'
 
 
 def create_app(debug=None, local=None, object_config=None):
