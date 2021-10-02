@@ -1,4 +1,5 @@
 {% extends "layout.html" %}
+{% from 'macros.html' import picture %}
 
 {% block body %}
 
@@ -35,7 +36,7 @@
                         <div class="card text-center" id='data'>
                           <h5 class="card-header">Science Archive Server</h5>
                           <div class="card-body">
-                              <img class='img-fluid splash' id='img-data' src="{{url_for('static', filename='sas.png')}}" alt="Card Image">
+                              {{ picture('sas', id='data') }}
                               <div class="overlay">
                                 <div class="text">Access SDSS images and spectra using the SAS filesystem</div>
                               </div>
@@ -47,7 +48,7 @@
                         <div class="card text-center" id='skyserver'>
                           <h5 class="card-header">SkyServer</h5>
                           <div class="card-body">
-                              <img class='img-fluid splash' id='img-skyserver' src="{{url_for('static', filename='skyserver.sdss.org.png')}}" alt="Card Image">
+                              {{ picture('skyserver.sdss.org', id='skyserver') }}
                               <div class="overlay">
                                 <div class="text">Access SDSS catalog data through a web browser</div>
                               </div>
@@ -70,7 +71,7 @@
                         <div class="card text-center" id='sdsshome'>
                           <h5 class="card-header">SDSS Home</h5>
                           <div class="card-body">
-                              <img class='img-fluid splash' id='img-sdsshome' src="{{url_for('static', filename='sdss.org.png')}}" alt="Card Image">
+                              {{ picture('sdss.org', id='sdsshome') }}
                               <div class="overlay">
                                 <div class="text">The Sloan Digital Sky Survey home page: mapping the Universe in 3-D</div>
                               </div>
@@ -82,7 +83,7 @@
                         <div class="card text-center" id='voyages'>
                           <h5 class="card-header">SDSS Voyages</h5>
                           <div class="card-body">
-                              <img class='img-fluid splash' id='img-voyages' src="{{url_for('static', filename='voyages.sdss.org.png')}}" alt="Card Image">
+                              {{ picture('voyages.sdss.org', id='voyages') }}
                               <div class="overlay">
                                 <div class="text">Customizable SDSS education resources for college and K-12 teachers</div>
                               </div>
@@ -94,7 +95,7 @@
                         <div class="card text-center" id='blog'>
                           <h5 class="card-header">SDSS Blog</h5>
                           <div class="card-body">
-                              <img class='img-fluid splash' id='img-blog' src="{{url_for('static', filename='sdss_blog.png')}}" alt="Card Image">
+                              {{ picture('sdss_blog', id='blog') }}
                               <div class="overlay">
                                 <div class="text">Follow the latest news on the SDSS Science Blog.</div>
                               </div>
@@ -117,7 +118,7 @@
                         <div class="card text-center" id='imaging'>
                           <h5 class="card-header">Imaging</h5>
                           <div class="card-body">
-                              <img class='img-fluid splash' id='img-imaging' src="{{url_for('static', filename='imaging.jpg')}}" alt="Card Image">
+                              {{ picture('imaging', id='imaging', ext='.jpg') }}
                               <div class="overlay">
                                 <div class="text">Search for SDSS imaging data by individual field, in bulk, or as mosaics</div>
                               </div>
@@ -129,7 +130,7 @@
                         <div class="card text-center" id='optical'>
                           <h5 class="card-header">Optical Spectra</h5>
                           <div class="card-body">
-                              <img class='img-fluid splash' id='img-optical' src="{{url_for('static', filename='optical1.png')}}" alt="Card Image">
+                              {{ picture('optical1', id='optical') }}
                               <div class="overlay">
                                 <div class="text">Browse SDSS optical spectroscopic data (eBOSS, BOSS, SEGUE, SNe, SDSS-I)</div>
                               </div>
@@ -141,7 +142,7 @@
                         <div class="card text-center" id='infrared'>
                           <h5 class="card-header">Infrared Spectra</h5>
                           <div class="card-body">
-                              <img class='img-fluid splash' id='img-infrared' src="{{url_for('static', filename='infrared1.png')}}" alt="Card Image">
+                              {{ picture('infrared1', id='infrared') }}
                               <div class="overlay">
                                 <div class="text">Browse SDSS infrared spectroscopic data (APOGEE-2, APOGEE)</div>
                               </div>
@@ -156,7 +157,7 @@
                         <div class="card text-center" id='marvin'>
                           <h5 class="card-header">MaNGA Data with Marvin</h5>
                           <div class="card-body">
-                              <img class='img-fluid splash' id='img-marvin' src="{{url_for('static', filename='manga_169_v3.jpg')}}" alt="Card Image">
+                              {{ picture('manga_169_v3', id='marvin', ext='.jpg') }}
                               <div class="overlay">
                                 <div class="text">Browse IFU spectroscopy data for nearby galaxies using the flexible Marvin search and visualization tool (MaNGA)</div>
                               </div>
@@ -168,7 +169,7 @@
                         <div class="card text-center" id='mastar'>
                           <h5 class="card-header">MaNGA Stellar Library</h5>
                           <div class="card-body">
-                              <img class='img-fluid splash' id='img-mastar' src="{{url_for('static', filename='mastar.png')}}" alt="Card Image">
+                              {{ picture('mastar', id='mastar') }}
                               <div class="overlay">
                                 <div class="text">Browse high-quality, well-calibrated spectra for stars of a variety of types.</div>
                               </div>

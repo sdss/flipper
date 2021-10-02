@@ -1,7 +1,8 @@
+{% from 'macros.html' import picture %}
 
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id='header'>
-  <a class="navbar-brand" id='logo' target='_blank' href="https://www.sdss.org"><img src='{{url_for('static', filename='sdss-logo.png')}}'></a>
+  <a class="navbar-brand" id='logo' target='_blank' href="https://www.sdss.org">{{picture('sdss-logo', id='sdss_logo')}}</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation" style="">
     <span class="navbar-toggler-icon"></span>
   </button>

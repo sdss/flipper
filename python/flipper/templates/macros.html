@@ -1,0 +1,16 @@
+
+{# macro to load static images for webp with fallback to original format #}
+{% macro picture(name, id, ext='.png') %}
+
+{% if ext == '.jpg' %}
+    {% set imtype = 'jpeg' %}
+{% elif ext == '.png' %}
+    {% set imtype = 'png' %}
+{% endif %}
+
+<picture>
+  <source srcset="{{url_for('static', filename=name+'.webp')}}" type="image/webp">
+  <source srcset="{{url_for('static', filename=name+ext)}}" type="image/{{imtype}}">
+  <img class="img-fluid splash" id="img-{{id}}" src="{{url_for('static', filename=name+ext)}}" alt="alt. {{id}}">
+</picture>
+{% endmacro %}

@@ -64,7 +64,33 @@ hr.style-two {
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #532AA1, rgba(0, 0, 0, 0));
 }
 
-.intro-header {
+/* css to load original background image if browser does not support webp
+ see https://css-tricks.com/using-webp-images/ */
+.no-webp .intro-header {
+    padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
+    padding-bottom: 200px;
+    text-align: center;
+    color: #f8f8f8;
+    background: url('../sdss_law_hires_compress.jpg') no-repeat center center;
+    background-size: cover;
+    background-position: right bottom;
+    max-height: 500px;
+}
+
+/* css to load webp background image if browser supports it */
+.webp .intro-header {
+    padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
+    padding-bottom: 200px;
+    text-align: center;
+    color: #f8f8f8;
+    background: url('../sdss_law_hires.webp') no-repeat center center;
+    background-size: cover;
+    background-position: right bottom;
+    max-height: 500px;
+}
+
+/* css to load original background image if browser has javascript disabled */
+.no-js .intro-header {
     padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
     padding-bottom: 200px;
     text-align: center;
