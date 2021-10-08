@@ -16,7 +16,7 @@ from flask import Blueprint, render_template, jsonify, request
 index = Blueprint("index", __name__)
 
 # SDSS DR releases
-releases = ['dr15', 'dr16']
+releases = ['dr15', 'dr16', 'dr17']
 
 
 @index.route('/status/', methods=['GET', 'POST'], endpoint='status')
