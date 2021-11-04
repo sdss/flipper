@@ -3,7 +3,7 @@
 Flipper Change Log
 ==================
 
-0.1.3 (unreleased)
+0.1.3 (2021-11-04)
 ------------------
 - Added support for webp image format.  Updated all images to webp for better performance.
 - Added DR17 release
