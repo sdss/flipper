@@ -2,6 +2,11 @@
 
 Flipper Change Log
 ==================
+0.1.4 (2025-05-21)
+- Add Zora and update for DR19/SDSS-V
+- Removed SDSS Blog
+- Add SDSS Bluesky link
+- Add save static site option
 
 0.1.3 (2021-11-04)
 ------------------
