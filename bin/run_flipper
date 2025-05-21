@@ -18,7 +18,7 @@ if __name__ == "__main__":
     if args.debug:
         app = create_app()
         app.run(debug=args.debug, port=args.port)
-    elif args.flat:
+    elif args.static:
         app = create_app(debug = True, local = False)
         save_rendered_page(app, route='/flipper/', output_dir='deploy')
     else:
