@@ -1,21 +1,27 @@
 #!/usr/bin/env python
 
 import argparse
-from flipper.app import create_app
+from flipper.app import create_app, save_rendered_page
 
 # Parse command
 parser = argparse.ArgumentParser(description='Script to start Flipper')
 parser.add_argument('-d', '--debug', help='launch app in debug mode', action='store_true', default=False)
 parser.add_argument('-p', '--port', help='port to run on in debug mode', type=int, default=5000)
+parser.add_argument('-s', '--static', help='create a static html of the flipper', 
+                    action='store_true', default=False)
 
 args = parser.parse_args()
 
-app = create_app()
 
 
 if __name__ == "__main__":
     if args.debug:
+        app = create_app()
         app.run(debug=args.debug, port=args.port)
+    elif args.flat:
+        app = create_app(debug = True, local = False)
+        save_rendered_page(app, route='/flipper/', output_dir='deploy')
     else:
+        app = create_app()
         app.run()
 

@@ -51,3 +51,28 @@ def register_blueprints(app, url_prefix=None):
     app.register_blueprint(index, url_prefix=url_prefix)
 
 
+def save_rendered_page(app, route='/flipper/', output_dir='deploy'):
+    import shutil
+    import os
+
+    with app.test_request_context(route):
+        response = app.full_dispatch_request()
+        html = response.get_data(as_text=True)
+
+        html = html.replace('/flipper/static/', './flipper/static/')
+
+        # Fix absolute paths to relative ones
+
+        os.makedirs(output_dir, exist_ok=True)
+        with open(os.path.join(output_dir, 'index.html'), 'w', encoding='utf-8') as f:
+            f.write(html)
+        print(f"Saved HTML to {os.path.join(output_dir, 'index.html')}")
+
+        static_src = os.path.join(app.root_path, 'static')
+        static_dst = os.path.join(output_dir,'flipper','static')
+        if os.path.exists(static_src):
+            shutil.copytree(static_src, static_dst, dirs_exist_ok=True)
+            print(f"Copied static files to {static_dst}")
+        else:
+            print("No static directory found to copy.")
+
