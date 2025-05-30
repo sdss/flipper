@@ -7,6 +7,8 @@ from flipper.app import create_app, save_rendered_page
 parser = argparse.ArgumentParser(description='Script to start Flipper')
 parser.add_argument('-d', '--debug', help='launch app in debug mode', action='store_true', default=False)
 parser.add_argument('-p', '--port', help='port to run on in debug mode', type=int, default=5000)
+parser.add_argument('-r', '--release', help='Manually Set release', type=str, default=None)
+parser.add_argument('-t', '--dev', help='Use testng base url for wordpress', action='store_true', default=False)
 parser.add_argument('-s', '--static', help='create a static html of the flipper', 
                     action='store_true', default=False)
 
@@ -16,12 +18,12 @@ args = parser.parse_args()
 
 if __name__ == "__main__":
     if args.debug:
-        app = create_app()
+        app = create_app(dev=args.dev, release=args.release)
         app.run(debug=args.debug, port=args.port)
     elif args.static:
-        app = create_app(debug = True, local = False)
+        app = create_app(debug = True, local = False, dev=args.dev, release=args.release)
         save_rendered_page(app, route='/flipper/', output_dir='deploy')
     else:
-        app = create_app()
+        app = create_app(dev=args.dev, release=args.release)
         app.run()
 

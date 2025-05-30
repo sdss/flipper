@@ -11,14 +11,14 @@
 from __future__ import print_function, division, absolute_import
 import os
 from flask import Flask
-from flipper.controllers.index import index
+from flipper.controllers.index import index, set_wordpress_url, set_release
 from flipper.settings import ProdConfig, DevConfig, CustomConfig
 
 # Set the Flipper version
 __version__ = '0.1.4dev'
 
 
-def create_app(debug=None, local=None, object_config=None):
+def create_app(debug=None, local=None, object_config=None, dev=False, release=None):
 
     base = os.environ.get('FLIPPER_BASE', 'flipper')
 
@@ -40,13 +40,16 @@ def create_app(debug=None, local=None, object_config=None):
 
     # -------------------
     # Registration
-    register_blueprints(app, url_prefix=url_prefix)
+    register_blueprints(app, url_prefix=url_prefix, dev=dev, release=release)
 
     return app
 
 
-def register_blueprints(app, url_prefix=None):
+def register_blueprints(app, url_prefix=None, dev=False, release=None):
     ''' Register the Flask Blueprints used '''
+
+    set_wordpress_url(dev=dev)
+    set_release(release=release)
 
     app.register_blueprint(index, url_prefix=url_prefix)
 

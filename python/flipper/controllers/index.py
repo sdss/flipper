@@ -17,6 +17,28 @@ index = Blueprint("index", __name__)
 
 # SDSS DR releases
 releases = ['dr15', 'dr16', 'dr17', 'dr18', 'dr19']
+#wordpress_url = 'testng.sdss.org' 
+wordpress_url = 'www.sdss.org'
+skyserver_release = None
+
+def set_wordpress_url(dev=False):
+    # set testng url for testing links before rollout of release
+    global wordpress_url, skyserver_release
+    if dev:
+        wordpress_url = 'testng.sdss.org' 
+        skyserver_release = ''
+
+
+def set_release(release = None):
+    # Manaully set the release for this app instance deploy
+    global releases 
+    if release is not None:
+        releases = [release]
+
+custom_option = None  # This will be set by main app
+
+
+
 
 
 @index.route('/status/', methods=['GET', 'POST'], endpoint='status')
@@ -52,8 +74,13 @@ def home():
         base_url = '{0}.sdss.org'.format(release)
         marvin_url = base_url
 
+    global skyserver_release
+    if skyserver_release is None:
+        skyserver_release = '/{0}'.format(release)
+
     # build template parameter dictionary
     output = {'title': 'SDSS Splashpage', 'version': flipper.app.__version__,
               'release': release, 'istest': istestenv, 'base_url': base_url,
-              'marvin_url': marvin_url}
+              'marvin_url': marvin_url, 'wordpress_url': wordpress_url, 
+              'skyserver_release': skyserver_release}
     return render_template('index.html', **output)
