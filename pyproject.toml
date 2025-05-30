@@ -5,6 +5,9 @@ description = "home splash page for SDSS"
 authors = ["Brian Cherinka <bcherinka@stsci.edu>"]
 license = "BSD-3-Clause"
 repository = "https://github.com/sdss/flipper"
+packages = [
+  { include = "flipper", from = "python" }
+]
 
 [tool.poetry.dependencies]
 python = "^3.6"
