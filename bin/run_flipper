@@ -8,7 +8,10 @@ parser = argparse.ArgumentParser(description='Script to start Flipper')
 parser.add_argument('-d', '--debug', help='launch app in debug mode', action='store_true', default=False)
 parser.add_argument('-p', '--port', help='port to run on in debug mode', type=int, default=5000)
 parser.add_argument('-r', '--release', help='Manually Set release', type=str, default=None)
-parser.add_argument('-t', '--dev', help='Use testng base url for wordpress', action='store_true', default=False)
+parser.add_argument('-t', '--dev', help='Use testng base url for wordpress', 
+                    action='store_true', default=False)
+parser.add_argument('-j', '--skyserver', help='Use SkyServer without release',
+                    action='store_true', default=False, dest='skyserver_no_release')
 parser.add_argument('-s', '--static', help='create a static html of the flipper', 
                     action='store_true', default=False)
 
@@ -21,7 +24,9 @@ if __name__ == "__main__":
         app = create_app(dev=args.dev, release=args.release)
         app.run(debug=args.debug, port=args.port)
     elif args.static:
-        app = create_app(debug = True, local = False, dev=args.dev, release=args.release)
+        app = create_app(debug = True, local = False, dev=args.dev, 
+                         release=args.release, 
+                         skyserver_no_release=args.skyserver_no_release)
         save_rendered_page(app, route='/flipper/', output_dir='deploy')
     else:
         app = create_app(dev=args.dev, release=args.release)

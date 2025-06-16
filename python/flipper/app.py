@@ -18,7 +18,8 @@ from flipper.settings import ProdConfig, DevConfig, CustomConfig
 __version__ = '0.1.4dev'
 
 
-def create_app(debug=None, local=None, object_config=None, dev=False, release=None):
+def create_app(debug=None, local=None, object_config=None, dev=False, release=None, 
+               skyserver_no_release=False):
 
     base = os.environ.get('FLIPPER_BASE', 'flipper')
 
@@ -40,16 +41,17 @@ def create_app(debug=None, local=None, object_config=None, dev=False, release=No
 
     # -------------------
     # Registration
-    register_blueprints(app, url_prefix=url_prefix, dev=dev, release=release)
+    register_blueprints(app, url_prefix=url_prefix, dev=dev, release=release, 
+                        skyserver_no_release=skyserver_no_release)
 
     return app
 
 
-def register_blueprints(app, url_prefix=None, dev=False, release=None):
+def register_blueprints(app, url_prefix=None, dev=False, release=None, skyserver_no_release=False):
     ''' Register the Flask Blueprints used '''
 
     set_wordpress_url(dev=dev)
-    set_release(release=release)
+    set_release(release=release, skyserver_no_release=skyserver_no_release)
 
     app.register_blueprint(index, url_prefix=url_prefix)
 

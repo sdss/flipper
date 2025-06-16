@@ -29,11 +29,16 @@ def set_wordpress_url(dev=False):
         skyserver_release = ''
 
 
-def set_release(release = None):
+def set_release(release = None, skyserver_no_release=False):
     # Manaully set the release for this app instance deploy
-    global releases 
+    global releases, skyserver_release
+
     if release is not None:
         releases = [release]
+    if not skyserver_no_release:
+        skyserver_release = '/{0}'.format(releases[-1])
+    else:
+        skyserver_release = ''
 
 custom_option = None  # This will be set by main app
 
