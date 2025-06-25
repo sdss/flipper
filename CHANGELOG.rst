@@ -3,6 +3,7 @@
 Flipper Change Log
 ==================
 0.1.4 (2025-05-29)
+------------------
 - Add Zora and update for DR19/SDSS-V
 - Removed SDSS Blog
 - Add SDSS Bluesky link
