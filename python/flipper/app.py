@@ -15,7 +15,7 @@ from flipper.controllers.index import index, set_wordpress_url, set_release
 from flipper.settings import ProdConfig, DevConfig, CustomConfig
 
 # Set the Flipper version
-__version__ = '0.1.4'
+__version__ = '0.1.5dev'
 
 
 def create_app(debug=None, local=None, object_config=None, dev=False, release=None, 
