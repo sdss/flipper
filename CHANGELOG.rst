@@ -2,6 +2,13 @@
 
 Flipper Change Log
 ==================
+0.1.4 (2025-05-29)
+- Add Zora and update for DR19/SDSS-V
+- Removed SDSS Blog
+- Add SDSS Bluesky link
+- Add save static site option with run_flipper
+- Add flag for using testng developement links with run_flipper
+- Add option to manually set release with run_flipper
 
 0.1.3 (2021-11-04)
 ------------------

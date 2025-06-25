@@ -11,6 +11,6 @@
 <picture>
   <source srcset="{{url_for('static', filename=name+'.webp')}}" type="image/webp">
   <source srcset="{{url_for('static', filename=name+ext)}}" type="image/{{imtype}}">
-  <img class="img-fluid splash" id="img-{{id}}" src="{{url_for('static', filename=name+ext)}}" alt="alt. {{id}}">
+  <img class="img-fluid splash" id="img-{{id}}" src="{{url_for('static', filename=name+ext)}}" alt="alt.{{id}}">
 </picture>
 {% endmacro %}
