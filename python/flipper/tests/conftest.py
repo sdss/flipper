@@ -43,7 +43,7 @@ def app():
     return app
 
 
-@pytest.yield_fixture
+@pytest.fixture
 def testctx(monkeypatch):
     ''' Fixture to create an app with a test Flask base url
 
@@ -59,7 +59,7 @@ def testctx(monkeypatch):
     ctx.pop()
 
 
-@pytest.yield_fixture
+@pytest.fixture
 def testclient(monkeypatch):
     ''' Fixture to create an app with a test Flask base url
 
@@ -83,3 +83,6 @@ def monkeyrelease(monkeypatch, request):
     monkeypatch.setitem(os.environ, 'FLIPPER_RELEASE', request.param)
     yield request.param
 
+@pytest.fixture
+def client(app):
+    return app.test_client()

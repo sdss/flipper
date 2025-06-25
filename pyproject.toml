@@ -10,13 +10,13 @@ packages = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.6"
+python = "^3.9"
 flask = "^1.0"
 bumpversion = "*"
 
-[tool.poetry.dev-dependencies]
-pytest = "^3.4"
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.0"
 pytest-flask = "*"
-pytest-sugar = "*"
+pytest-sugar = "^1.0.0"
 pytest-cov = "*"
 blinker = "^1.4"
