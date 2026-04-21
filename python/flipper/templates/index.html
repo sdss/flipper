@@ -27,199 +27,45 @@
         <!-- /.intro-header -->
     </section>
 
-    <section class='group' id='portals'>
-        <div class="d-flex justify-content-center"><h2>Data Portals</h2></div>
-        <div class='row'>
-            <div class='col-md-12'>
-                    <div class="card-deck justify-content-center">
-                        <a target="_blank" href="https://{{base_url}}/sas/">
-                        <div class="card text-center" id='data'>
-                          <h5 class="card-header">Science Archive Server</h5>
-                          <div class="card-body">
-                              {{ picture('sas', id='data') }}
-                              <div class="overlay">
-                                <div class="text">Access SDSS images and spectra using the SAS filesystem</div>
-                              </div>
-                          </div>
-                        </div>
-                        </a>
+    {% for section in sections %}
+<section class="group" id="{{ section.id }}">
+    <div class="d-flex justify-content-center">
+        <h2>{{ section.title }}</h2>
+    </div>
 
-                        <a target="_blank" href="https://skyserver.sdss.org{{skyserver_release}}">
-                        <div class="card text-center" id='skyserver'>
-                          <h5 class="card-header">SkyServer</h5>
-                          <div class="card-body">
-                              {{ picture('skyserver.sdss.org', id='skyserver') }}
-                              <div class="overlay">
-                                <div class="text">Access SDSS catalog data through a web browser</div>
-                              </div>
-                          </div>
+    {% for row in section.rows %}
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+          <div class="card-deck justify-content-center">
+
+          {% for card in row.cards %}
+
+            <a target="_blank" href="{{ card.href }}"> 
+                <div class="card text-center " id="{{ card.id }}">
+                    <h5 class="card-header">{{ card.header }}</h5>
+                    <div class="card-body">
+                        {% if card.ext %}
+                            {{ picture(card.picture, id=card.id, ext=card.ext) }}
+                        {% else %}
+                            {{ picture(card.picture, id=card.id) }}
+                        {% endif %}
+                        <div class="overlay">
+                            <div class="text">{{ card.overlay }}</div>
                         </div>
-                        </a>
-                    </div> <!-- end card-deck -->
-            </div>
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+          </div> 
         </div>
-    </section>
 
-    <div><hr/ class='style-two'></div>
+    </div>
+    {% endfor %}
 
-    <section class='group' id='epo'>
-        <div class="d-flex justify-content-center"><h2>Education/Public Outreach</h2></div>
-        <div class='row'>
-            <div class='col-md-12'>
-                    <div class="card-deck justify-content-center">
-                        <a target="_blank" href="https://{{wordpress_url}}">
-                        <div class="card text-center" id='sdsshome'>
-                          <h5 class="card-header">SDSS Home</h5>
-                          <div class="card-body">
-                              {{ picture('sdss.org', id='sdsshome') }}
-                              <div class="overlay">
-                                <div class="text">The Sloan Digital Sky Survey home page: mapping the Universe in 3-D</div>
-                              </div>
-                          </div>
-                        </div>
-                        </a>
+</section>
 
-                        <a target="_blank" href="http://voyages.sdss.org">
-                        <div class="card text-center" id='voyages'>
-                          <h5 class="card-header">SDSS Voyages</h5>
-                          <div class="card-body">
-                              {{ picture('voyages.sdss.org', id='voyages') }}
-                              <div class="overlay">
-                                <div class="text">Customizable SDSS education resources for college and K-12 teachers</div>
-                              </div>
-                          </div>
-                        </div>
-                        </a>
-
-                        <a target="_blank" href="https://{{wordpress_url}}/news/">
-                        <div class="card text-center" id='news'>
-                          <h5 class="card-header">SDSS Press Releases</h5>
-                          <div class="card-body">
-                              {{ picture('news', id='news') }}
-                              <div class="overlay">
-                                <div class="text">See the Latest SDSS Press Releases</div>
-                              </div>
-                          </div>
-                        </div>
-                        </a>
-                    </div> <!-- end card-deck -->
-            </div>
-        </div>
-    </section>
-
-    <div><hr/ class='style-two'></div>
-
-    <section class='group' id='data'>
-        <div class="d-flex justify-content-center"><h2>Data Interaction</h2></div>
-        <div class='row'>
-            <div class='col-md-12'>
-                    <div class="card-deck justify-content-center">
-                        <a target="_blank" href="https://{{base_url}}/zora/">
-                        <div class="card text-center" id='zora'>
-                          <h5 class="card-header">SDSS-V MOS Spectra Viewer (Zora)</h5>
-                          <div class="card-body">
-                              {{ picture('zora', id='zora') }}
-                              <div class="overlay">
-                                <div class="text">Browse SDSS-V optical and infrared spectroscopic data (BHM, MWM)</div>
-                              </div>
-                          </div>
-                        </div>
-                        </a>
-
-                         
-                        <a target="_blank" href="https://{{wordpress_url}}/{{release}}/lvm/getting_started/">
-                        <div class="card text-center" id='lvmvis'>
-                          <h5 class="card-header">SDSS-V LVM Access</h5>
-                          <div class="card-body">
-                              {{ picture('lvm_logo', id='lvm_logo') }}
-                              <div class="overlay">
-                                <div class="text">Accessing SDSS-V optical IFU spectroscopic data (LVM)</div>
-                              </div>
-                          </div>
-                        </div>
-                        </a> 
-
-                        <a target="_blank" href="https://{{wordpress_url}}/{{release}}/tutorials/">
-                        <div class="card text-center" id='tutorials'>
-                          <h5 class="card-header">SDSS-V Data Tutorials</h5>
-                          <div class="card-body">
-                              {{ picture('tutorials', id='tutorials') }}
-                              <div class="overlay">
-                                <div class="text">Tutorials for SDSS-V Data Access</div>
-                              </div>
-                          </div>
-                        </div>
-                        </a> 
-
-                        <!-- this breaks after three cards -->
-                        <div class='w-100'></div>
-
-                        <a target="_blank" href="https://{{base_url}}/optical/">
-                        <div class="card text-center" id='optical'>
-                          <h5 class="card-header">Pre-DR19 Optical Spectra</h5>
-                          <div class="card-body">
-                              {{ picture('optical1', id='optical') }}
-                              <div class="overlay">
-                                <div class="text">Browse Pre-DR19 SDSS optical spectroscopic data (DR18 BHM, eBOSS, BOSS, SEGUE, SNe, SDSS-I)</div>
-                              </div>
-                          </div>
-                        </div>
-                        </a>
-
-                        <a target="_blank" href="https://{{base_url}}/infrared/">
-                        <div class="card text-center" id='infrared'>
-                          <h5 class="card-header">Pre-DR19 Infrared Spectra</h5>
-                          <div class="card-body">
-                              {{ picture('infrared1', id='infrared') }}
-                              <div class="overlay">
-                                <div class="text">Browse Pre-DR19 SDSS infrared spectroscopic data (APOGEE-2, APOGEE)</div>
-                              </div>
-                          </div>
-                        </div>
-                        </a>
-
-                        <!-- this breaks after three cards -->
-                        <div class='w-100'></div>
-
-                        <a target="_blank" href="https://dr17.sdss.org/marvin/">
-                        <div class="card text-center" id='marvin'>
-                          <h5 class="card-header">MaNGA Data with Marvin</h5>
-                          <div class="card-body">
-                              {{ picture('manga_169_v3', id='marvin', ext='.jpg') }}
-                              <div class="overlay">
-                                <div class="text">Browse IFU spectroscopy data for nearby galaxies using the flexible Marvin search and visualization tool (MaNGA)</div>
-                              </div>
-                          </div>
-                        </div>
-                        </a>
-
-                        <a target="_blank" href="https://dr17.sdss.org/mastar/">
-                        <div class="card text-center" id='mastar'>
-                          <h5 class="card-header">MaNGA Stellar Library</h5>
-                          <div class="card-body">
-                              {{ picture('mastar', id='mastar') }}
-                              <div class="overlay">
-                                <div class="text">Browse high-quality, well-calibrated spectra for stars of a variety of types.</div>
-                              </div>
-                          </div>
-                        </div>
-                        </a>
-
-                        <a target="_blank" href="https://dr12.sdss.org/fields">
-                        <div class="card text-center" id='imaging'>
-                          <h5 class="card-header">Imaging</h5>
-                          <div class="card-body">
-                              {{ picture('imaging', id='imaging', ext='.jpg') }}
-                              <div class="overlay">
-                                <div class="text">Search for SDSS imaging data by individual field, in bulk, or as mosaics</div>
-                              </div>
-                          </div>
-                        </div>
-                        </a>
-                    </div> <!-- end card-deck -->
-            </div>
-        </div>
-    </section>
+<div><hr class="style-two"></div>
+{% endfor %}
 
 {% endblock body %}
 
