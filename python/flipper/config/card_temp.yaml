@@ -1,0 +1,101 @@
+# cards.yaml
+# Top-level structure
+
+wordpress_url: www.sdss.org # Base URL for SDSS WordPress style homepage links (if use_wordpress is true)
+skyserver_release: None # Set to a string like "/dr19" to enable SkyServer card with release-specific URL - defaults to current SkyServer if None or empty
+dev:  # Optional dev overrides (used to set different urls for pre-DR testing)
+  wordpress_url: testng.sdss.org
+  skyserver_release: ""
+base_url: "{{release}}.sdss.org" # Base URL for internal SAS type links (if external_url and use_skyserver are not set)
+title: "SDSS Splashpage"      # Page title (can be overridden by config)
+
+
+sections:
+
+  - id: example_section
+    title: Example Section Title
+
+    rows:
+      - cards:
+
+          # ------------------------------------------------------------
+          # CARD TYPE 1: External URL (highest priority)
+          # ------------------------------------------------------------
+          - id: example_external
+            header: Example External Card
+            picture: example_image
+            overlay: Description text shown on hover
+
+            # Highest priority. Used as-is.
+            # Supports optional {{release}} token replacement.
+            external_url: https://example.org/path/{{release}}
+
+            # Optional image extension (only if needed)
+            ext: .jpg
+
+            # The following keys are ignored if external_url exists
+            use_skyserver: false
+            use_wordpress: false
+            url: /ignored/
+
+
+          # ------------------------------------------------------------
+          # CARD TYPE 2: SkyServer special handling
+          # ------------------------------------------------------------
+          - id: example_skyserver
+            header: Example SkyServer Card
+            picture: skyserver_image
+            overlay: Uses skyserver_release variable
+
+            use_skyserver: true
+
+            # Ignored if use_skyserver is true
+            external_url:
+            use_wordpress: false
+            url: /ignored/
+
+
+          # ------------------------------------------------------------
+          # CARD TYPE 3: WordPress-prefixed URL
+          # ------------------------------------------------------------
+          - id: example_wordpress
+            header: Example WordPress Card
+            picture: wordpress_image
+            overlay: Prefixed with wordpress_url
+
+            use_wordpress: true
+            url: /news/
+            use_release: True #includes the release in the url
+            release: dr20
+            # Ignored if use_wordpress is true
+            external_url:
+            use_skyserver: false
+
+
+          # ------------------------------------------------------------
+          # CARD TYPE 4: Internal Base URL (default behavior)
+          # ------------------------------------------------------------
+          - id: example_internal
+            header: Example Internal Card
+            picture: internal_image
+            overlay: Prefixed with base_url
+
+            # Default behavior if nothing else is set
+            url: /internal/path/
+
+            # Optional flags (should remain false or omitted)
+            external_url:
+            use_skyserver: false
+            use_wordpress: false
+
+
+          # ------------------------------------------------------------
+          # CARD TYPE 5: Fallback (will become "#")
+          # ------------------------------------------------------------
+          - id: example_empty
+            header: Empty / Placeholder Card
+            picture: placeholder
+            overlay: No URL defined
+
+            # If none of the URL options are defined,
+            # href will default to "#"

@@ -1,0 +1,24 @@
+- url: https://data.sdss.org/datamodel
+  out: datamodels
+
+- url: https://sas.sdss.org/sas/
+#- url: https://data.sdss5.org/sas",
+  out: sas
+
+- url: https://testng.sdss.org/dr20/tutorials
+  out: tutorials_sdss_org
+
+- url: https://www.sdss.org
+  out: sdss.org
+
+- url: https://www.sdss.org/news
+  out: news
+
+- url: https://data.sdss.org/zora
+  out: zora
+
+- url: https://voyages.sdss.org/
+  out: voyages.sdss.org
+
+- url: https://dev-mirror.sdss.org/sas/
+  out: sas-mirror

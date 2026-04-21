@@ -1,0 +1,118 @@
+wordpress_url: www.sdss.org
+skyserver_release: None
+dev:
+  wordpress_url: testng.sdss.org
+  skyserver_release: ""
+base_url: "{{release}}.sdss.org"
+title: "SDSS Splashpage"
+
+sections:
+
+  - id: portals
+    title: Data Portals
+    rows:
+      - cards:
+          - id: data
+            header: Science Archive Server
+            url: /sas/
+            picture: sas
+            overlay: Access SDSS images and spectra using the SAS filesystem
+
+          - id: skyserver
+            header: SkyServer
+            external_url: https://skyserver.sdss.org/
+            picture: skyserver.sdss.org
+            overlay: Access SDSS catalog data through a web browser
+
+
+  - id: epo
+    title: Education/Public Outreach
+    rows:
+      - cards:
+          - id: sdsshome
+            header: SDSS Home
+            use_wordpress: true
+            use_release: false
+            picture: sdss.org
+            overlay: Pioneering Panoptic Spectroscopic Surveys
+
+          - id: voyages
+            header: SDSS Voyages
+            external_url: http://voyages.sdss.org
+            picture: voyages.sdss.org
+            overlay: Customizable education resources
+
+          - id: news
+            header: SDSS Press Releases
+            url: /news/
+            use_wordpress: true
+            picture: news
+            overlay: See the latest SDSS press releases
+
+
+  - id: data
+    title: Data Interaction
+    rows:
+
+      - cards:
+          - id: zora
+            header: SDSS-V MOS Spectra Viewer (Zora)
+            url: /zora/
+            picture: zora
+            overlay: Browse SDSS-V spectroscopic data
+
+          - id: lvmvis
+            header: SDSS-V LVM Access
+            use_wordpress: true
+            use_release: true
+            url: /lvm/getting_started/
+            picture: lvm_logo
+            overlay: Access SDSS-V IFU data
+
+          - id: tutorials
+            header: SDSS-V Data Tutorials
+            use_wordpress: true
+            use_release: true
+            url: /tutorials/
+            picture: tutorials
+            overlay: Tutorials for SDSS-V data access
+
+      - cards:
+          - id: optical
+            header: Pre-DR19 Optical Spectra
+            url: /optical/
+            picture: optical1
+            overlay: Browse pre-DR19 optical data
+
+          - id: infrared
+            header: Pre-DR19 Infrared Spectra
+            url: /infrared/
+            picture: infrared1
+            overlay: Browse pre-DR19 infrared data
+
+          # - id: datamodel
+          #   header: Data Model
+          #   external_url: https://data.sdss.org/datamodel/
+          #   picture: datamodels
+          #   overlay: Access SDSS catalog documentation
+
+      - cards:
+          - id: marvin
+            header: MaNGA Data with Marvin
+            external_url: https://dr17.sdss.org/marvin/
+            picture: manga_169_v3
+            ext: .jpg
+            overlay: Explore IFU spectroscopy data
+
+          - id: mastar
+            header: MaNGA Stellar Library
+            external_url: https://dr17.sdss.org/mastar/
+            picture: mastar
+            overlay: High-quality stellar spectra
+
+          - id: imaging
+            header: Imaging
+            external_url: https://dr12.sdss.org/fields
+            picture: imaging
+            ext: .jpg
+            overlay: Search SDSS imaging data
