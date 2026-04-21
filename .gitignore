@@ -35,6 +35,11 @@ MANIFEST
 pip-log.txt
 pip-delete-this-directory.txt
 
+
+# Deployment folders (anywhere in the repo)
+**/deploy/
+
+
 # Unit test / coverage reports
 htmlcov/
 .tox/
@@ -80,6 +85,10 @@ celerybeat-schedule
 
 # SageMath parsed files
 *.sage.py
+
+# Dependency lock files
+poetry.lock
+uv.lock
 
 # Environments
 .env
