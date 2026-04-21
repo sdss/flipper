@@ -75,7 +75,7 @@ def create_snaps(yaml_path= None, outdir=None):
                 sys.exit(1)
                 raise
         with Image.open(os.path.join(outdir,site['out']+'.png')) as img:
-            img.save(site['out']+'.webp', "WEBP", quality=80)    
+            img.save(os.path.join(outdir,site['out']+'.webp'), "WEBP", quality=80)    
         print(f'Snapped {site["url"]} to {os.path.join(outdir,site["out"])}.webp')
 
 if __name__ == "__main__":
