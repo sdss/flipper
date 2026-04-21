@@ -1,88 +1,140 @@
-# !usr/bin/env python
-# -*- coding: utf-8 -*-
-#
-# Licensed under a 3-clause BSD license.
-#
-# @Author: Brian Cherinka
-# @Date:   2018-08-16 11:43:42
-# @Last modified by:   Brian Cherinka
-# @Last Modified time: 2018-08-16 11:58:06
+from __future__ import annotations
 
-from __future__ import print_function, division, absolute_import
+import copy
+from pathlib import Path
+
 import pytest
-import os
-from flask import template_rendered
-from flipper.app import create_app
-from contextlib import contextmanager
+
+from flipper.Config import config
 
 
-@contextmanager
-def captured_templates(app):
-    ''' Records which templates are used '''
-    recorded = []
+@pytest.fixture(autouse=True)
+def restore_config_state():
+    snapshot = {
+        "base": config.base,
+        "release": config.release,
+        "available_releases": list(config.available_releases),
+        "dev": config.dev,
+        "skyserver_no_release": config.skyserver_no_release,
+        "cfg": copy.deepcopy(config.cfg),
+        "copyright_year": config.copyright_year,
+        "mirror": config.mirror,
+    }
 
-    def record(app, template, context, **extra):
-        recorded.append((template, context))
-
-    template_rendered.connect(record)
-    yield recorded
-    template_rendered.disconnect(record)
-
-
-@pytest.fixture()
-def get_templates(app):
-    ''' Fixture that returns which jinja template used '''
-    with captured_templates(app) as templates:
-        yield templates
-
-
-@pytest.fixture
-def app():
-    ''' Flask application '''
-    app = create_app()
-    return app
-
-
-@pytest.fixture
-def testctx(monkeypatch):
-    ''' Fixture to create an app with a test Flask base url
-
-    Returns only the request context to allow for use for url_for
-
-    '''
-    monkeypatch.setenv('FLIPPER_BASE', 'test/flipper')
-    app = create_app()
-    app.testing = True
-    ctx = app.test_request_context()
-    ctx.push()
     yield
-    ctx.pop()
+
+    for key, value in snapshot.items():
+        setattr(config, key, value)
 
 
 @pytest.fixture
-def testclient(monkeypatch):
-    ''' Fixture to create an app with a test Flask base url
+def sample_cfg():
+    return {
+        "base_url": "{{release}}.sdss.org",
+        "wordpress_url": "www.sdss.org",
+        "skyserver_release": 'dr19',
+        "dev":{
+            "wordpress_url": "https://testng.sdss.org",
+            "skyserver_release": "/dr19",   
+        },
+        "title": "SDSS Splashpage",
+        "sections": [
+            {
+                "rows": [
+                    {
+                        "cards": [
+                            {
+                                "title": "Internal",
+                                "url": "/infrared/",
+                            },
+                            {
+                                "title": "External",
+                                "external_url": "https://example.com/{{release}}/docs",
+                            },
+                            {
+                                "title": "Skyserver",
+                                "use_skyserver": True,
+                            },
+                            {
+                                "title": "WordPress",
+                                "use_wordpress": True,
+                                "url": "/news/",
+                            },
+                            {
+                                "title": "Mirror",
+                                "url": "/sas/",
+                                "mirror": "mirror",
+                                "picture": "logo.png",
+                            },
+                        ]
+                    }
+                ]
+            }
+        ],
+    }
 
-    Returns the client fixture
-
-    '''
-    monkeypatch.setenv('FLIPPER_BASE', 'test/flipper')
-    app = create_app()
-    app.testing = True
-    with app.test_client() as client:
-        yield client
-
-
-# global releases to loop over
-releases = ['dr15', 'dr16']
-
-
-@pytest.fixture(params=releases)
-def monkeyrelease(monkeypatch, request):
-    ''' Fixture to monkeypatch the flipper release environment variable '''
-    monkeypatch.setitem(os.environ, 'FLIPPER_RELEASE', request.param)
-    yield request.param
 
 @pytest.fixture
-def client(app):
-    return app.test_client()
+def sample_template_dir(tmp_path):
+    template_dir = tmp_path / "templates"
+    template_dir.mkdir()
+
+    (template_dir / "index.html").write_text(
+        """<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='sdss-logo.png') }}">
+  </head>
+  <body>
+    <h1>{{ title }}</h1>
+    <p class="release">{{ release }}</p>
+    {% for section in sections %}
+      {% for row in section.rows %}
+        {% for card in row.cards %}
+          <a class="card" href="{{ card.href }}">{{ card.title }}</a>
+        {% endfor %}
+      {% endfor %}
+    {% endfor %}
+  </body>
+</html>
+""",
+        encoding="utf-8",
+    )
+    return template_dir
+
+
+@pytest.fixture
+def sample_package_root(tmp_path):
+    pkg_root = tmp_path / "flipper"
+    template_dir = pkg_root / "templates"
+    static_dir = pkg_root / "static"
+
+    template_dir.mkdir(parents=True)
+    static_dir.mkdir(parents=True)
+
+    (template_dir / "index.html").write_text(
+        """<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='sdss-logo.png') }}">
+  </head>
+  <body>
+    <h1>{{ title }}</h1>
+    <p class="release">{{ release }}</p>
+    {% for section in sections %}
+      {% for row in section.rows %}
+        {% for card in row.cards %}
+          <a class="card" href="{{ card.href }}">{{ card.title }}</a>
+        {% endfor %}
+      {% endfor %}
+    {% endfor %}
+  </body>
+</html>
+""",
+        encoding="utf-8",
+    )
+
+    (static_dir / "sdss-logo.png").write_text("logo", encoding="utf-8")
+    (static_dir / "site.css").write_text("body {}", encoding="utf-8")
+
+    return pkg_root
