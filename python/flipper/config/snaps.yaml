@@ -25,3 +25,6 @@
 
 - url: https://testng.sdss.org/dr20/lvm/getting_started/
   out: lvm_getting_started
+
+- url: https://skyserver.sdss.org/
+  out: skyserver.sdss.org

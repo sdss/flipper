@@ -5,16 +5,26 @@ from pathlib import Path
 from datetime import date
 import logging
 
+class Base:
+    def __init__(self):
+        self.wordpress_url = None
+        self.skyserver_release = None
+        self.base_url = None
+
 class Config:
-    def __init__(self, base=None,  release=None, dev=False, skyserver_no_release=False, mirror=False):
+    def __init__(self, base=None, config = None, release=None, dev=False, skyserver_no_release=False, mirror=False):
         self.base = base or os.environ.get("FLIPPER_BASE", "flipper")
         self.release = release
+        self.config_file = config
         self.available_releases = self.get_available_releases()
         self.dev = dev
         self.skyserver_no_release = skyserver_no_release
         self.cfg = None  # This will hold the loaded YAML config sections
         self.copyright_year = date.today().year
         self.mirror = mirror
+        self.base = Base()
+        self.dev_base = Base()
+
 
     def get_available_releases(self):
         config_dir = resources.files("flipper.config")
@@ -27,7 +37,7 @@ class Config:
     def set_release(self, release=None, dev=False, skyserver_no_release=False, mirror=None):
         self.release = release or os.environ.get("FLIPPER_RELEASE")
         if self.release is not None:
-            if self.release not in self.available_releases:
+            if (self.release not in self.available_releases) and (self.release not in ['data']):
                 logging.warning(f"Release '{self.release}' not found in available releases: {self.available_releases}. Defaulting to latest release's template.")
                 sorted_rels = sorted(self.available_releases, key=lambda x: int(x.split("dr")[-1]))
                 self.release = sorted_rels[-1]
@@ -38,18 +48,30 @@ class Config:
     def set_wordpress_url(self):
         if self.cfg is None:
             self.load()
-        if self.dev:
-            self.cfg['wordpress_url'] = self.cfg.get('dev', {}).get('wordpress_url', 'https://testng.sdss.org')
-            self.cfg['skyserver_release'] = self.cfg.get('dev', {}).get('skyserver_release', '')
-        else:
-            self.cfg['wordpress_url'] = self.cfg.get('wordpress_url', 'https://www.sdss.org')
-            self.cfg['skyserver_release'] = self.cfg.get('skyserver_release', '')
+        self.dev_base.wordpress_url = self.cfg.get('dev', {}).get('wordpress_url', 'https://testng.sdss.org')
+        self.dev_base.skyserver_release = self.cfg.get('dev', {}).get('skyserver_release', '')
+        self.dev_base.base_url = self.cfg.get('dev',{}).get('base_url')
+
+        self.base.wordpress_url = self.cfg.get('wordpress_url', 'https://www.sdss.org')
+        self.base.skyserver_release = self.cfg.get('skyserver_release', '')
+        self.base.base_url = self.cfg.get('base_url')
+        # if self.dev:
+        #     self.cfg['wordpress_url'] = self.cfg.get('dev', {}).get('wordpress_url', 'https://testng.sdss.org')
+        #     self.cfg['skyserver_release'] = self.cfg.get('dev', {}).get('skyserver_release', '')
+        #     self.cfg['base_url'] = self.cfg.get('dev',{}).get('base_url')
+        # else:
+        #     self.cfg['wordpress_url'] = self.cfg.get('wordpress_url', 'https://www.sdss.org')
+        #     self.cfg['skyserver_release'] = self.cfg.get('skyserver_release', '')
+        #     self.cfg['base_url'] = self.cfg.get('base_url')
         if self.skyserver_no_release:
-            self.cfg['skyserver_release'] = ''
+            #self.cfg['skyserver_release'] = ''
+            self.dev_base.skyserver_release = ''
+            self.base.skyserver_release = ''
 
     def load(self):
         config_dir = resources.files("flipper.config")
-        yaml_path = (config_dir / self.release).with_suffix(".yaml")
+        config = self.config or self.release
+        yaml_path = (config_dir / config).with_suffix(".yaml")
 
         try:
             with yaml_path.open("r", encoding="utf-8") as f:

@@ -1,24 +1,32 @@
+## Example Call Command: flipper -tr dr20 -c work -o deploy_v3_testng
+
 title: "SDSS Splashpage"
+favicon: favicon.ico
 wordpress_url: www.sdss.org
+static_src: 
+
 skyserver_release: None
 base_url: "{{release}}.sdss.org"
-favicon: favicon.ico
-static_src: 
-logo: 
-    picture: sdss-logo
-    id: sdss-logo
-    href: https://www.sdss.org
-    target: _blank
-intro-message:
-  - <h1>Sloan Digital Sky Survey</h1>
-  - <hr class="intro-divider">
-  - <h3>Mapping the Universe since 1998</h3>
-  - <hr class="intro-divider">
-  - <h5>This is a portal to all other SDSS pages</h5>
 dev:
   wordpress_url: testng.sdss.org
   skyserver_release: ""
   base_url: "sas.sdss.org"
+header:
+  logo: 
+    picture: sdss-logo
+    id: sdss-logo
+    href: https://www.sdss.org
+    target: _blank
+  intro_message:
+    - <h1>Sloan Digital Sky Survey</h1>
+    - <hr class="intro-divider">
+    - <h3>Mapping the Universe since 1998</h3>
+    - <hr class="intro-divider">
+    - <h5>This is a portal to all other SDSS pages</h5>
+  background:
+    no_webp: sdss_law_hires_compress.jpg
+    no-js: sdss_law_hires_compress.jpg
+    webp: sdss_law_hires.webp
 
 footer:
   copyright: <a target="_blank" href="https://www.sdss.org"><strong>sdss.org</strong></a>
@@ -42,7 +50,7 @@ footer:
     - id: helpdesk
       url: mailto:helpdesk@sdss.org
       icon: "fa-solid fa-paper-plane"
-      aria_hidden: "true"    
+      aria_hidden: "true"      
 
 sections:
 
@@ -55,6 +63,7 @@ sections:
             header: Science Archive Server
             url: /sas/
             picture: sas
+            mirror: sas-dev-mirror
             overlay: Access SDSS images and spectra using the SAS filesystem
 
           - id: skyserver
@@ -85,7 +94,7 @@ sections:
           - id: news
             header: SDSS Press Releases
             url: /news/
-            use_wordpress: true
+            use_wordpress: True
             picture: news
             overlay: See the latest SDSS press releases
 
@@ -94,7 +103,6 @@ sections:
     title: Data Interaction
     shorttitle: Data Interaction
     rows:
-
       - cards:
           - id: zora
             header: SDSS-V MOS Spectra Viewer (Zora)
@@ -103,39 +111,26 @@ sections:
             overlay: Browse SDSS-V spectroscopic data
 
           - id: lvmvis
-            header: SDSS-V LVM Access
-            use_wordpress: true
-            use_release: true
-            url: /lvm/getting_started/
+            header: SDSS-V LVM Visualization
+            #external_url: https://sas.sdss5.org/lvmvis/
+            url: /lvmvis/
             picture: lvm_logo
-            overlay: Access SDSS-V IFU data
-
-          - id: tutorials
-            header: SDSS-V Data Tutorials
-            use_wordpress: true
-            use_release: true
-            url: /tutorials/
-            picture: tutorials
-            overlay: Tutorials for SDSS-V data access
+            overlay: SDSS-V IFU Visualization
 
       - cards:
           - id: optical
             header: Pre-DR19 Optical Spectra
-            url: /optical/
+            external_url: https://dr19.sdss.org/optical/
+            #url: /optical/
             picture: optical1
             overlay: Browse pre-DR19 optical data
 
           - id: infrared
             header: Pre-DR19 Infrared Spectra
-            url: /infrared/
+            external_url: https://dr19.sdss.org/infrared/
+            #url: /infrared/
             picture: infrared1
             overlay: Browse pre-DR19 infrared data
-
-          # - id: datamodel
-          #   header: Data Model
-          #   external_url: https://data.sdss.org/datamodel/
-          #   picture: datamodels
-          #   overlay: Access SDSS Data Models
 
       - cards:
           - id: marvin
@@ -157,3 +152,30 @@ sections:
             picture: imaging
             ext: .jpg
             overlay: Search SDSS imaging data
+
+  - id: tutorials
+    title: Tutorials and Data Models
+    shorttitle: Tutorials & Data Models
+    rows:
+      - cards:
+          - id: datamodel
+            header: SDSS Data Models
+            url: /datamodel/
+            picture: datamodels
+            overlay: Access SDSS Data models
+
+          - id: tutorials
+            header: SDSS-V Data Tutorials
+            use_wordpress: true
+            use_release: true
+            url: /tutorials/
+            picture: tutorials
+            overlay: Tutorials for SDSS-V data access
+
+          - id: lvmaccess
+            header: SDSS-V LVM Access
+            use_wordpress: true
+            use_release: true
+            url: /lvm/getting_started/
+            picture: lvm_getting_started
+            overlay: Access SDSS-V IFU data

@@ -13,11 +13,9 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="intro-message">
-                            <h1>Sloan Digital Sky Survey</h1>
-                            <hr class="intro-divider">
-                            <h3>Mapping the Universe since 1998</h3>
-                            <hr class="intro-divider">
-                            <h5>This is a portal to all other SDSS pages</h5>
+                            {% for row in intro_message %}
+                                {{ row |safe }}
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
@@ -44,11 +42,7 @@
                 <div class="card text-center " id="{{ card.id }}">
                     <h5 class="card-header">{{ card.header }}</h5>
                     <div class="card-body">
-                        {% if card.ext %}
-                            {{ picture(card.picture, id=card.id, ext=card.ext) }}
-                        {% else %}
-                            {{ picture(card.picture, id=card.id) }}
-                        {% endif %}
+                        {% if card.ext %} {{ picture(card.picture, id=card.id, ext=card.ext) }} {% else %} {{ picture(card.picture, id=card.id) }} {% endif %}
                         <div class="overlay">
                             <div class="text">{{ card.overlay }}</div>
                         </div>
@@ -63,10 +57,9 @@
     {% endfor %}
 
 </section>
-
-<div><hr class="style-two"></div>
+<!-- <div><hr class="style-two"></div> -->
+<hr class="style-two">
 {% endfor %}
-
 {% endblock body %}
 
 <!-- JS Code -->

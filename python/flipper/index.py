@@ -8,12 +8,12 @@ from flipper.Config import config
 from typing import Optional, List, Dict, Any
 from jinja2 import Environment
 
-def set_wordpress_url(dev: bool = False, skyserver_no_release: bool = False):
-    if dev:
-        config.cfg.wordpress_url = config.cfg.dev.wordpress_url
-        config.cfg.skyserver_release = config.cfg.dev.skyserver_release
-    if skyserver_no_release:
-        config.cfg.skyserver_release = ""
+# def set_wordpress_url(dev: bool = False, skyserver_no_release: bool = False):
+#     if dev:
+#         config.cfg.wordpress_url = config.cfg.dev.wordpress_url
+#         config.cfg.skyserver_release = config.cfg.dev.skyserver_release
+#     if skyserver_no_release:
+#         config.cfg.skyserver_release = ""
 
 
 def resolve_release(
@@ -28,14 +28,12 @@ def resolve_release(
     return sorted_rels[-1]
 
 
-
-
 def load_sections_from_yaml() -> List[Dict[str, Any]]:
     sections = config.cfg.get("sections", []) or []
 
-    base_host = (config.cfg.get('base_url', f"{config.release}.sdss.org")).rstrip("/")
-    base_host = base_host.replace("{{release}}", config.release)
-    wordpress_host = (config.cfg.get('wordpress_url', '') or "").rstrip("/") if config.cfg.get('wordpress_url') else None
+    # base_host = (config.cfg.get('base_url', f"{config.release}.sdss.org")).rstrip("/")
+    # base_host = base_host.replace("{{release}}", config.release)
+    # wordpress_host = (config.cfg.get('wordpress_url', '') or "").rstrip("/") if config.cfg.get('wordpress_url') else None
 
     for section in sections:
         if "rows" not in section and "cards" in section:
@@ -64,31 +62,42 @@ def load_sections_from_yaml() -> List[Dict[str, Any]]:
                         href = "https://skyserver.sdss.org/"
 
                 elif card.get("use_wordpress"):
-                    if not wordpress_host:
-                        href = "#"
+                    href = None
+                    if config.dev:
+                        if not config.dev_base.wordpress_url:
+                            href = "#"
                     else:
+                        if not config.base.wordpress_url:
+                            href = '#'
+                    if href is None:
                         path = card.get("url", "/")
                         if not path.startswith("/"):
                             path = "/" + path
                         if card.get("use_release", False):
                             path = f"/{config.release}{path}"
-                        href = f"https://{wordpress_host}{path}"
-
+                        if config.dev:
+                            href = f"https://{config.dev_base.wordpress_url}{path}"
+                        else:
+                            href = f"https://{config.base.wordpress_url}{path}"
 
                 elif card.get("url"):
                         
                     path = card.get("url", "/")
                     if not path.startswith("/"):
                         path = "/" + path
-                    tbase_host = base_host
+                    if config.dev:
+                        tbase_host = config.dev_base.base_url
+                    else:
+                        tbase_host = config.base.base_url
                     if config.mirror is not None:
                         if card.get("mirror",None) is not None:
-                            tbase_host = (config.cfg.get('base_url', f"{config.release}.sdss.org")).rstrip("/")
                             tbase_host = tbase_host.replace("{{release}}", config.mirror)
                             if card.get('picture', None):
                                 card['picture'] = card.get('mirror')
+    
+                    tbase_host = tbase_host.replace("{{release}}", config.release)
+
                     href = f"https://{tbase_host}{path}"
-                
 
                 card["href"] = href
 

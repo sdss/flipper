@@ -1,15 +1,54 @@
+title: "SDSS Splashpage"
 wordpress_url: www.sdss.org
 skyserver_release: None
+base_url: "{{release}}.sdss.org"
+favicon: favicon.ico
+static_src: 
+logo: 
+    picture: sdss-logo
+    id: sdss-logo
+    href: https://www.sdss.org
+    target: _blank
+intro-message:
+  - <h1>Sloan Digital Sky Survey</h1>
+  - <hr class="intro-divider">
+  - <h3>Mapping the Universe since 1998</h3>
+  - <hr class="intro-divider">
+  - <h5>This is a portal to all other SDSS pages</h5>
 dev:
   wordpress_url: testng.sdss.org
   skyserver_release: ""
-base_url: "{{release}}.sdss.org"
-title: "SDSS Splashpage"
+  base_url: "sas.sdss.org"
+
+footer:
+  copyright: <a target="_blank" href="https://www.sdss.org"><strong>sdss.org</strong></a>
+  media:
+    - id: github
+      url: https://github.com/sdss
+      icon: "fa-brands fa-github" 
+      aria_hidden: "true"
+    - id: facebook
+      url: https://www.facebook.com/SDSSurveys
+      icon: "fa-brands fa-facebook"
+      aria_hidden: "true"
+    - id: bluesky
+      url: https://bsky.app/profile/sdssurveys.bsky.social
+      icon: "fa-brands fa-bluesky"
+      aria_hidden: "true"
+    - id: x
+      url: https://x.com/sdssurveys
+      icon: "fa-brands fa-x-twitter"
+      aria_hidden: "true"
+    - id: helpdesk
+      url: mailto:helpdesk@sdss.org
+      icon: "fa-solid fa-paper-plane"
+      aria_hidden: "true"    
 
 sections:
 
   - id: portals
     title: Data Portals
+    shorttitle: Data Portals
     rows:
       - cards:
           - id: data
@@ -27,6 +66,7 @@ sections:
 
   - id: epo
     title: Education/Public Outreach
+    shorttitle: EPO
     rows:
       - cards:
           - id: sdsshome
@@ -50,6 +90,7 @@ sections:
 
   - id: data
     title: Data Interaction
+    shorttitle: Data Interaction
     rows:
 
       - cards:
