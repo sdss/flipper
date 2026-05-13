@@ -31,10 +31,6 @@ def resolve_release(
 def load_sections_from_yaml() -> List[Dict[str, Any]]:
     sections = config.cfg.get("sections", []) or []
 
-    # base_host = (config.cfg.get('base_url', f"{config.release}.sdss.org")).rstrip("/")
-    # base_host = base_host.replace("{{release}}", config.release)
-    # wordpress_host = (config.cfg.get('wordpress_url', '') or "").rstrip("/") if config.cfg.get('wordpress_url') else None
-
     for section in sections:
         if "rows" not in section and "cards" in section:
             section["rows"] = [{"cards": section.pop("cards")}]
@@ -56,8 +52,12 @@ def load_sections_from_yaml() -> List[Dict[str, Any]]:
                         href = href.replace("{{release}}", config.release)
 
                 elif card.get("use_skyserver"):
-                    if config.cfg.get('skyserver_release'):
-                        href = f"https://skyserver.sdss.org/{config.cfg.get('skyserver_release')}"
+                    if config.dev:
+                        skyserver_release = config.dev_base.skyserver_release
+                    else:
+                        skyserver_release = config.base.skyserver_release
+                    if skyserver_release:
+                        href = f"https://skyserver.sdss.org/{skyserver_release}"
                     else:
                         href = "https://skyserver.sdss.org/"
 

@@ -38,8 +38,10 @@ def test_load_sections_from_yaml_builds_hrefs(sample_cfg):
     config.release = "dr19"
     config.mirror = "mirror"
     config.cfg = copy.deepcopy(sample_cfg)
+    config.set_wordpress_url()
 
     sections = load_sections_from_yaml()
+
     cards = sections[0]["rows"][0]["cards"]
 
     assert cards[0]["href"] == "https://dr19.sdss.org/infrared/"
@@ -86,14 +88,14 @@ def test_render_index_renders_template_and_url_for(sample_template_dir):
 
 
 def test_save_rendered_page_writes_files(tmp_path):
-    static_src = tmp_path / "static"
+    static_src = tmp_path /  "static"
     static_src.mkdir()
     (static_src / "sdss-logo.png").write_text("logo", encoding="utf-8")
 
     output_dir = tmp_path / "deploy"
     html = '<html><body><link href="/static/sdss-logo.png"></body></html>'
 
-    save_rendered_page(html, output_dir=str(output_dir), static_src=str(static_src))
+    save_rendered_page(html, None, None, output_dir=str(output_dir), static_src=str(static_src))
 
     index_file = output_dir / "index.html"
     copied_static = output_dir / "static" / "sdss-logo.png"
@@ -155,18 +157,16 @@ def test_build_flipper_dev_mode(tmp_path, monkeypatch, sample_package_root, samp
     # Add dev config into YAML
     dev_cfg = copy.deepcopy(sample_cfg)
     dev_cfg["dev"] = {
-        "wordpress_url": "testng.sdss.org",
-        "skyserver_release": ""
+        "wordpress_url": "https://testng.sdss.org",
+        "skyserver_release": None,
+        "base_url": "sas.sdss.org" 
     }
-
     def fake_load():
         b.config.cfg = dev_cfg
 
     monkeypatch.setattr(b.config, "load", fake_load)
 
-    # 👇 run with dev=True
     b.build_flipper(dev=True)
-
     html = (tmp_path / "deploy" / "index.html").read_text(encoding="utf-8")
 
     # WordPress links should now use dev URL

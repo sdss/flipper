@@ -30,14 +30,17 @@ def restore_config_state():
 @pytest.fixture
 def sample_cfg():
     return {
-        "base_url": "{{release}}.sdss.org",
+        "title": "SDSS Splashpage",
+        "favicon": "favicon.ico",
         "wordpress_url": "www.sdss.org",
+        "static_src": None,
         "skyserver_release": 'dr19',
+        "base_url": "{{release}}.sdss.org",
         "dev":{
             "wordpress_url": "https://testng.sdss.org",
-            "skyserver_release": "/dr19",   
+            "skyserver_release": "/dr19",  
+            "base_url": "sas.sdss.org" 
         },
-        "title": "SDSS Splashpage",
         "sections": [
             {
                 "rows": [
@@ -108,9 +111,13 @@ def sample_package_root(tmp_path):
     pkg_root = tmp_path / "flipper"
     template_dir = pkg_root / "templates"
     static_dir = pkg_root / "static"
+    css_dir = template_dir / "css"
+    js_dir = template_dir / "js"
 
-    template_dir.mkdir(parents=True)
-    static_dir.mkdir(parents=True)
+    template_dir.mkdir(parents=True, exist_ok=True)
+    css_dir.mkdir(parents=True, exist_ok=True)
+    js_dir.mkdir(parents=True, exist_ok=True)
+    static_dir.mkdir(parents=True, exist_ok=True)
 
     (template_dir / "index.html").write_text(
         """<!doctype html>
@@ -134,6 +141,26 @@ def sample_package_root(tmp_path):
         encoding="utf-8",
     )
 
+    (css_dir / "home.css").write_text(
+        """
+.no-webp .intro-header {
+    background: url('../{{ background.no_webp }}') no-repeat center center;
+}
+.webp .intro-header {
+    background: url('../{{ background.webp }}') no-repeat center center;
+}
+.no-js .intro-header {
+    background: url('../{{ background.no_js }}') no-repeat center center;
+}
+""",
+        encoding="utf-8",
+    )
+    (js_dir / "modernizr-custom.js").write_text(
+        """
+    // this script is a small modernizer build to detect if browser supports webp image formats.
+    """,
+        encoding="utf-8",
+    )
     (static_dir / "sdss-logo.png").write_text("logo", encoding="utf-8")
     (static_dir / "site.css").write_text("body {}", encoding="utf-8")
 

@@ -83,11 +83,12 @@ def build_context() -> Dict[str, Any]:
         "intro_message": hdr.get('intro_message',[])
     }
 
+
 def save_rendered_page(html, css, js, output_dir="deploy", static_src="static"):
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    html = html.replace(f"/static/", f"./static/")
+    html = html.replace("/static/", "./static/")
 
     index_path = output_dir / "index.html"
     index_path.write_text(html, encoding="utf-8")
@@ -97,21 +98,29 @@ def save_rendered_page(html, css, js, output_dir="deploy", static_src="static"):
     static_dst = output_dir / "static"
 
     if static_src.exists():
-        shutil.copytree(static_src, static_dst, dirs_exist_ok=True)
+        src = static_src.resolve()
+        dst = static_dst.resolve()
+
+        if dst == src or dst.is_relative_to(src):
+            raise ValueError(f"Refusing to copy {src} into itself at {dst}")
+
+        shutil.copytree(src, dst, dirs_exist_ok=True)
         print(f"Copied static files to {static_dst.resolve()}")
     else:
         print("No static directory found to copy.")
-    css_path = static_dst / 'css'
-    css_path.mkdir(parents=True, exist_ok=True)
-    css_path = css_path / 'home.css'
-    css_path.write_text(css, encoding="utf-8")
-    print(f"Saved CSS to {css_path.resolve()}")
+    if css is not None:
+        css_path = static_dst / 'css'
+        css_path.mkdir(parents=True, exist_ok=True)
+        css_path = css_path / 'home.css'
+        css_path.write_text(css, encoding="utf-8")
+        print(f"Saved CSS to {css_path.resolve()}")
 
-    js_path = static_dst / 'js'
-    js_path.mkdir(parents=True, exist_ok=True)
-    js_path = js_path / 'modernizr-custom.js'
-    js_path.write_text(js, encoding="utf-8")
-    print(f"Saved js to {js_path.resolve()}")   
+    if js is not None:
+        js_path = static_dst / 'js'
+        js_path.mkdir(parents=True, exist_ok=True)
+        js_path = js_path / 'modernizr-custom.js'
+        js_path.write_text(js, encoding="utf-8")
+        print(f"Saved js to {js_path.resolve()}")   
 
 
 def build_flipper(release = None, config_release = None, dev=False, skyserver_no_release=False, mirror=None, outdir='deploy'):

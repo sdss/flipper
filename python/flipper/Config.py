@@ -13,9 +13,8 @@ class Base:
 
 class Config:
     def __init__(self, base=None, config = None, release=None, dev=False, skyserver_no_release=False, mirror=False):
-        self.base = base or os.environ.get("FLIPPER_BASE", "flipper")
         self.release = release
-        self.config_file = config
+        self.config = config
         self.available_releases = self.get_available_releases()
         self.dev = dev
         self.skyserver_no_release = skyserver_no_release
@@ -55,16 +54,7 @@ class Config:
         self.base.wordpress_url = self.cfg.get('wordpress_url', 'https://www.sdss.org')
         self.base.skyserver_release = self.cfg.get('skyserver_release', '')
         self.base.base_url = self.cfg.get('base_url')
-        # if self.dev:
-        #     self.cfg['wordpress_url'] = self.cfg.get('dev', {}).get('wordpress_url', 'https://testng.sdss.org')
-        #     self.cfg['skyserver_release'] = self.cfg.get('dev', {}).get('skyserver_release', '')
-        #     self.cfg['base_url'] = self.cfg.get('dev',{}).get('base_url')
-        # else:
-        #     self.cfg['wordpress_url'] = self.cfg.get('wordpress_url', 'https://www.sdss.org')
-        #     self.cfg['skyserver_release'] = self.cfg.get('skyserver_release', '')
-        #     self.cfg['base_url'] = self.cfg.get('base_url')
         if self.skyserver_no_release:
-            #self.cfg['skyserver_release'] = ''
             self.dev_base.skyserver_release = ''
             self.base.skyserver_release = ''
 
@@ -72,9 +62,10 @@ class Config:
         config_dir = resources.files("flipper.config")
         config = self.config or self.release
         yaml_path = (config_dir / config).with_suffix(".yaml")
-
+        print('test')
         try:
             with yaml_path.open("r", encoding="utf-8") as f:
+                print(yaml_path)
                 self.cfg = yaml.safe_load(f)
         except Exception as exc:
                 raise RuntimeError(
