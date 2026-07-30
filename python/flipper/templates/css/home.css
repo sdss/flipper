@@ -1,8 +1,8 @@
 /*
 * @Author: Brian Cherinka
 * @Date:   2018-05-15 14:32:32
-* @Last Modified by:   Brian Cherinka
-* @Last Modified time: 2018-06-06 10:23:49
+* @Last Modified by:   Sean Morrison
+* @Last Modified time:  2026-04-30 09:37:01
 */
 
 
@@ -21,6 +21,11 @@
 .card:hover .overlay {
     opacity: 0.8;
 
+}
+
+
+.has-background {
+    background: var(--card-bg);
 }
 
 .card {
@@ -52,12 +57,6 @@
   text-align: center;
 }
 
-/* .group {
-    padding: 15px;
-    border: 1px solid #532AA1;
-    border-radius: 1rem;
-    margin: 15px;
-} */
 hr.style-two {
     border: 0;
     height: 1px;
@@ -71,7 +70,7 @@ hr.style-two {
     padding-bottom: 200px;
     text-align: center;
     color: #f8f8f8;
-    background: url('../sdss_law_hires_compress.jpg') no-repeat center center;
+    background: url('../{{ background.no_webp }}') no-repeat center center;
     background-size: cover;
     background-position: right bottom;
     max-height: 500px;
@@ -83,7 +82,7 @@ hr.style-two {
     padding-bottom: 200px;
     text-align: center;
     color: #f8f8f8;
-    background: url('../sdss_law_hires.webp') no-repeat center center;
+    background: url('../{{ background.webp }}') no-repeat center center;
     background-size: cover;
     background-position: right bottom;
     max-height: 500px;
@@ -95,7 +94,7 @@ hr.style-two {
     padding-bottom: 200px;
     text-align: center;
     color: #f8f8f8;
-    background: url('../sdss_law_hires_compress.jpg') no-repeat center center;
+    background: url('../{{ background.no_js }}') no-repeat center center;
     background-size: cover;
     background-position: right bottom;
     max-height: 500px;
@@ -150,12 +149,13 @@ hr.style-two {
       padding-left: 0px;
     }
 
+    .version-info {
+        display: none;
+    }
 }
 
 
 .intro-message {
-    /*margin-top: 25px;
-    font-size: 21px;*/
     text-align: center;
     animation: fadein 3s;
     -moz-animation: fadein 3s; /* Firefox */
@@ -199,4 +199,31 @@ hr.style-two {
 .card img {
   width: 350px;
   height:200px;
+}
+
+
+/* FIXED FOOTER: always visible on-screen */
+footer {
+    position: fixed;
+    padding-left: 5px;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+#footer-content .row {
+    justify-content: center;
+    text-align: center;
+    flex-wrap: wrap;   /* ensure proper wrapping */
+}
+
+/* make sure page content isn't hidden behind the footer */
+/* adjust 80px to match the actual footer height */
+body {
+    padding-bottom: 35px;
+}
+
+#footer p {
+    margin: 2px 0;
 }

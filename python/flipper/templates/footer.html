@@ -7,31 +7,30 @@
         <div class="row d-flex align-items-center">
 
           <!-- Grid column -->
-          <div class="col-md-2 col-lg-2">
+          <div class="col-12 col-md-3">
             <!--Copyright and image credit-->
-            <p class="text-center text-md-left">© 2018 Copyright: <a target="_blank" href="https://www.sdss.org"><strong>sdss.org</strong></a></p>
+	          <p class="text-center text-md-left">© {{ copyright_year }} Copyright: {{ copyright | safe }} </p>
           </div>
 
           <!-- Grid column -->
-          <div class="col-md-2 col-lg-2">
+          <div class="col-12 col-md-2 version-info">
             <p class="text-center text-md-left">version: {{version}}</p>
           </div>
 
           <!-- Grid column -->
-          <div class="col-md-4 col-lg-4">
+          <div class="col-12 col-md-3">
             <p class="text-center text-md-left">Telescope image credit: David R. Law</p>
           </div>
           <!-- Grid column -->
 
           <!-- Grid column -->
-          <div class="col-md-4 col-lg-4 ml-lg-0">
-
+          <div class="col-12 col-md-4">
             <!-- Social buttons -->
             <div class="text-center text-md-right">
               <ul class="list-unstyled list-inline">
-                <li class="list-inline-item"><a href="https://github.com/sdss"><i class="fa-brands fa-github" aria-hidden="true"></i></a></li>
-                <li class="list-inline-item"><a href="https://bsky.app/profile/sdssurveys.bsky.social"><i class="fa-brands fa-bluesky" aria-hidden="true"></i></a></li>
-                <li class="list-inline-item"><a href="https://twitter.com/sdssurveys"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a></li>
+                {% for item in media %} 
+                <li class="list-inline-item"><a href="{{ item.url }}"><i class="{{ item.icon }}"{% if item.aria_hidden %}aria-hidden="true"{% endif %}></i></a></li> 
+                {% endfor %}
                 <li class="list-inline-item"><a class="btn-default btn-lg" href='#'><i class="fa-solid fa-circle-arrow-up fa-fw"></i></i></a></li>
               </ul>
             </div>

@@ -1,0 +1,128 @@
+title: "SDSS Splashpage"
+wordpress_url: www.sdss.org
+skyserver_release: None
+base_url: "{{release}}.sdss.org"
+favicon: favicon.ico
+static_src: 
+logo: 
+    picture: sdss-logo
+    id: sdss-logo
+    href: https://www.sdss.org
+    target: _blank
+intro-message:
+  - <h1>Sloan Digital Sky Survey</h1>
+  - <hr class="intro-divider">
+  - <h3>Mapping the Universe since 1998</h3>
+  - <hr class="intro-divider">
+  - <h5>This is a portal to all other SDSS pages</h5>
+dev:
+  wordpress_url: testng.sdss.org
+  skyserver_release: ""
+  base_url: "sas.sdss.org"
+
+footer:
+  copyright: <a target="_blank" href="https://www.sdss.org"><strong>sdss.org</strong></a>
+  media:
+    - id: github
+      url: https://github.com/sdss
+      icon: "fa-brands fa-github" 
+      aria_hidden: "true"
+    - id: facebook
+      url: https://www.facebook.com/SDSSurveys
+      icon: "fa-brands fa-facebook"
+      aria_hidden: "true"
+    - id: bluesky
+      url: https://bsky.app/profile/sdssurveys.bsky.social
+      icon: "fa-brands fa-bluesky"
+      aria_hidden: "true"
+    - id: x
+      url: https://x.com/sdssurveys
+      icon: "fa-brands fa-x-twitter"
+      aria_hidden: "true"
+    - id: helpdesk
+      url: mailto:helpdesk@sdss.org
+      icon: "fa-solid fa-paper-plane"
+      aria_hidden: "true"    
+
+sections:
+
+  - id: portals
+    title: Data Portals
+    shorttitle: Data Portals
+    rows:
+      - cards:
+          - id: data
+            header: Science Archive Server
+            url: /sas/
+            picture: sas
+            overlay: Access SDSS images and spectra using the SAS filesystem
+
+          - id: skyserver
+            header: SkyServer
+            external_url: https://skyserver.sdss.org/
+            picture: skyserver.sdss.org
+            overlay: Access SDSS catalog data through a web browser
+
+
+  - id: epo
+    title: Education/Public Outreach
+    shorttitle: EPO
+    rows:
+      - cards:
+          - id: sdsshome
+            header: SDSS Home
+            external_url: https://www.sdss4.org/
+            picture: sdss.org
+            overlay: "The Sloan Digital Sky Survey home page: mapping the Universe in 3-D"
+
+          - id: voyages
+            header: SDSS Voyages
+            external_url: http://voyages.sdss.org
+            picture: voyages.sdss.org
+            overlay: Customizable education resources
+
+          - id: news
+            header: SDSS Press Releases
+            external_url: https://blog.sdss.org/
+            picture: sdss_blog
+            overlay: Follow the latest news on SDSS Blog
+
+
+  - id: data
+    title: Data Interaction
+    shorttitle: Data Interaction
+    rows:
+
+      - cards:
+          - id: imaging
+            header: Imaging
+            external_url: https://dr12.sdss.org/fields
+            picture: imaging
+            ext: .jpg
+            overlay: Search SDSS imaging data
+
+          - id: optical
+            header: Optical Spectra
+            url: /optical/
+            picture: optical1
+            overlay: Browse optical data
+
+          - id: infrared
+            header: Infrared Spectra
+            url: /infrared/
+            picture: infrared1
+            overlay: Browse infrared data
+
+      - cards:
+          - id: marvin
+            header: MaNGA Data with Marvin
+            external_url: https://dr17.sdss.org/marvin/
+            picture: manga_169_v3
+            ext: .jpg
+            overlay: Explore IFU spectroscopy data
+
+          - id: mastar
+            header: MaNGA Stellar Library
+            external_url: https://dr17.sdss.org/mastar/
+            picture: mastar
+            overlay: High-quality stellar spectra

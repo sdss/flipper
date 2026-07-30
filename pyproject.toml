@@ -1,24 +1,45 @@
-[tool.poetry]
+[project]
 name = "flipper"
-version = "0.1.5dev"
+version = "1.0.0dev"
 description = "home splash page for SDSS"
-authors = ["Brian Cherinka <bcherinka@stsci.edu>"]
-license = "BSD-3-Clause"
-repository = "https://github.com/sdss/flipper"
-packages = [
-  { include = "flipper", from = "python" }
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "BSD-3-Clause" }
+authors = [
+  {name = "Sean Morrison", email = "smorris0@illinois.edu"},
+  {name = "Brian Cherinka", email = "bcherinka@stsci.edu" }
 ]
 
+dependencies = [
+  "jinja2 >= 3.1.6",
+  "sdsstools",
+  "pyyaml",
+]
 
-[tool.poetry.dependencies]
-python = "^3.9"
-flask = "^1.0"
-bumpversion = "*"
-blinker = "^1.9.0"
+[project.urls]
+Repository = "https://github.com/sdss/flipper"
 
-[tool.poetry.group.dev.dependencies]
-pytest = "^7.0"
-pytest-flask = "*"
-pytest-sugar = "^1.0.0"
-pytest-cov = "*"
-blinker = "^1.4"
+[tool.uv]
+package = true
+
+
+[tool.setuptools.packages.find]
+where = ["python"]
+
+[project.scripts]
+flipper = "flipper.cli:cli"
+flipper_snapshot = "flipper.cli:cli_create_snaps"
+
+[project.optional-dependencies]
+dev = [
+  "pytest >= 9.0.3",
+  "pytest-sugar>=1.0.0",
+  "pytest-cov",
+]
+
+snap = [
+  "playwright",
+  "Pillow",
+  "PyYAML"
+]
+

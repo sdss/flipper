@@ -2,6 +2,17 @@
 
 Flipper Change Log
 ==================
+1.0.0 (2026-05-01)
+------------------
+- Add support for DR20
+- Update for DR20/SDSS-V
+- Add new SDSS Datamodel link
+- Deprecate the flask app and move to a static site with build_flipper script
+- Add code to build the snapshots
+- Update README with new build and run instructions
+
+
+
 0.1.4 (2025-05-29)
 ------------------
 - Add Zora and update for DR19/SDSS-V
