@@ -1,6 +1,6 @@
 [project]
 name = "flipper"
-version = "1.0.0dev"
+version = "1.0.0"
 description = "home splash page for SDSS"
 readme = "README.md"
 requires-python = ">=3.10"
