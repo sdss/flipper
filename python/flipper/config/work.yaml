@@ -72,6 +72,12 @@ sections:
             picture: skyserver.sdss.org
             overlay: Access SDSS catalog data through a web browser
 
+          - id: sciserver
+            header: SciServer
+            external_url: https://sciserver.org/
+            picture: sciserver.org
+            #background: "#003466"
+            overlay: A collaborative environment for server-side analysis with extremely large datasets
 
   - id: epo
     title: Education/Public Outreach
@@ -111,10 +117,10 @@ sections:
             overlay: Browse SDSS-V spectroscopic data
 
           - id: lvmvis
-            header: SDSS-V LVM Visualization
+            header: SDSS-V LVM Visualization (LVMVis)
             #external_url: https://sas.sdss5.org/lvmvis/
             url: /lvmvis/
-            picture: lvm_logo
+            picture: lvmvis
             overlay: SDSS-V IFU Visualization
 
       - cards:

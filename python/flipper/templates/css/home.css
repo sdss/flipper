@@ -23,6 +23,11 @@
 
 }
 
+
+.has-background {
+    background: var(--card-bg);
+}
+
 .card {
     -webkit-transition: transform 0.2s ease-in-out;
     transition: transform 0.2s ease-in-out;

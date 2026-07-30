@@ -28,3 +28,6 @@
 
 - url: https://skyserver.sdss.org/
   out: skyserver.sdss.org
+
+- url: https://sas.sdss.org/lvmvis/
+  out: lvmvis

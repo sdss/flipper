@@ -41,7 +41,7 @@
             <a target="_blank" href="{{ card.href }}"> 
                 <div class="card text-center " id="{{ card.id }}">
                     <h5 class="card-header">{{ card.header }}</h5>
-                    <div class="card-body">
+                    <div class="card-body" {% if card.background %} style="background: {{ card.background }};" {% endif %}>
                         {% if card.ext %} {{ picture(card.picture, id=card.id, ext=card.ext) }} {% else %} {{ picture(card.picture, id=card.id) }} {% endif %}
                         <div class="overlay">
                             <div class="text">{{ card.overlay }}</div>

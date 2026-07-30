@@ -62,10 +62,8 @@ class Config:
         config_dir = resources.files("flipper.config")
         config = self.config or self.release
         yaml_path = (config_dir / config).with_suffix(".yaml")
-        print('test')
         try:
             with yaml_path.open("r", encoding="utf-8") as f:
-                print(yaml_path)
                 self.cfg = yaml.safe_load(f)
         except Exception as exc:
                 raise RuntimeError(

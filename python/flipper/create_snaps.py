@@ -68,7 +68,26 @@ def create_snaps(yaml_path= None, outdir=None, release=None, banner=None):
                             )          
             
                 page = context.new_page()
-                page.goto(site['url'], wait_until="networkidle")
+                if 'lvmvis' not in site['url']:
+                    page.goto(site['url'], wait_until="networkidle")
+                else:
+                    page.goto(site['url'], wait_until="domcontentloaded", timeout=60000)
+                    page.wait_for_function("""() => document.querySelector('#aladin-div')""", timeout=60000)
+                    page.wait_for_function("""
+                            () => document.querySelector('#aladin-div .aladin-widgets-toolbar')
+                            """, timeout=60000)
+                    page.wait_for_function("""
+                            () => {
+                                const el = document.querySelector('#initial-loader');
+                                if (!el) return true;
+                                const s = getComputedStyle(el);
+                                return s.display === 'none' || s.visibility === 'hidden' || s.opacity === '0';
+                            }
+                            """, timeout=60000)
+                    page.wait_for_function(
+                                "() => document.querySelectorAll('[data-panel-id]').length > 0",
+                                timeout=60000)
+                    page.wait_for_timeout(2000)                    
 
 
                 if banner:
